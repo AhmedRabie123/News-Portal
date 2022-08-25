@@ -13,4 +13,4 @@
 <link rel="stylesheet" href="{{ asset('dist/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('dist/css/components.css') }}">
 <link rel="stylesheet" href="{{ asset('dist/css/spacing.css') }}">
-<link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
+<link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
