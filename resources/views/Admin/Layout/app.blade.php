@@ -51,7 +51,7 @@
 
     @if ($errors->any())
 
-        @foreach ($errors->all as $error)
+        @foreach ($errors->all() as $error)
             <script>
                 iziToast.error({
                     title: '',
