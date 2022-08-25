@@ -19,9 +19,10 @@ class AdminProfileController extends Controller
 
    public function admin_profile_submit(Request $request)
    {
-    //  dd($request->name);
-
+    
      $admin_data = Admin::where('email',Auth::guard('admin')->user()->email)->first();
+
+        //dd($admin_data);
 
        $request->validate([
   
@@ -64,6 +65,7 @@ class AdminProfileController extends Controller
 
           $admin_data->photo = $final_name;
 
+
        }
 
        $admin_data->name = $request->name;
@@ -71,7 +73,8 @@ class AdminProfileController extends Controller
        $admin_data->update();
 
        return redirect()->back()->with('success', 'profile information updated successfully.');
-
+ 
+       
    }
 
 
