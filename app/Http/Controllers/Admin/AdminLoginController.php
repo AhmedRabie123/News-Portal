@@ -22,8 +22,8 @@ class AdminLoginController extends Controller
 
     public function admin_login()
     {
-        //$pass = Hash::make('1234');
-        //dd($pass);
+        // $pass = Hash::make('1234');
+        // dd($pass);
         return view('admin.login');
     }
 
