@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminAdvertisementController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminSubCategoryController;
+use App\Http\Controllers\Admin\AdminPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,3 +77,12 @@ Route::post('/admin/sub-category-store',[AdminSubCategoryController::class, 'sub
 Route::get('/admin/sub-category-edit/{id}',[AdminSubCategoryController::class, 'sub_category_edit'])->name('admin_sub_category_edit')->middleware('admin:admin');
 Route::post('/admin/sub-category-update/{id}',[AdminSubCategoryController::class, 'sub_category_update'])->name('admin_sub_category_update')->middleware('admin:admin');
 Route::get('/admin/sub-category-delete/{id}',[AdminSubCategoryController::class, 'sub_category_delete'])->name('admin_sub_category_delete')->middleware('admin:admin');
+
+// post 
+
+Route::get('/admin/post-show',[AdminPostController::class, 'post_show'])->name('admin_post_show')->middleware('admin:admin');
+Route::get('/admin/post-create',[AdminPostController::class, 'post_create'])->name('admin_post_create')->middleware('admin:admin');
+Route::post('/admin/post-store',[AdminPostController::class, 'post_store'])->name('admin_post_store')->middleware('admin:admin');
+Route::get('/admin/post-edit/{id}',[AdminPostController::class, 'post_edit'])->name('admin_post_edit')->middleware('admin:admin');
+Route::post('/admin/post-update/{id}',[AdminPostController::class, 'post_update'])->name('admin_post_update')->middleware('admin:admin');
+Route::get('/admin/post-delete/{id}',[AdminPostController::class, 'post_delete'])->name('admin_post_delete')->middleware('admin:admin');
