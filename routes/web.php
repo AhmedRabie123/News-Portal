@@ -86,3 +86,8 @@ Route::post('/admin/post-store',[AdminPostController::class, 'post_store'])->nam
 Route::get('/admin/post-edit/{id}',[AdminPostController::class, 'post_edit'])->name('admin_post_edit')->middleware('admin:admin');
 Route::post('/admin/post-update/{id}',[AdminPostController::class, 'post_update'])->name('admin_post_update')->middleware('admin:admin');
 Route::get('/admin/post-delete/{id}',[AdminPostController::class, 'post_delete'])->name('admin_post_delete')->middleware('admin:admin');
+Route::get('/admin/post-tag-delete/{id}/{id1}',[AdminPostController::class, 'tag_delete'])->name('admin_tag_delete')->middleware('admin:admin');
+
+
+
+

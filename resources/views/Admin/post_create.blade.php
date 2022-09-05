@@ -31,6 +31,11 @@
                             </div>
 
                             <div class="form-group mb-3">
+                                <label>Post Photo *</label>
+                                <div> <input type="file" name="post_photo"> </div>
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label>Select Category *</label>
                                 <select name="sub_category_id" class="form-control">
                                     @foreach ($sub_categories as $item)

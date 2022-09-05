@@ -44,7 +44,9 @@ class AdminSubCategoryController extends Controller
     public function sub_category_edit($id)
     {
         $categories = Category::orderBy('category_order', 'asc')->get();
+        //dd($categories);
         $sub_category_single = SubCategory::where('id', $id)->first();
+       // dd($sub_category_single);
         return view('Admin.sub_category_edit', compact('sub_category_single','categories'));
     }
 
