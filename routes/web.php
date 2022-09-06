@@ -1,8 +1,14 @@
 <?php
 
+// front Controller Route
+
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\PostController;
+
+// Admin Controller Route
 
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
@@ -11,6 +17,11 @@ use App\Http\Controllers\Admin\AdminAdvertisementController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminSubCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
+use App\Http\Controllers\Admin\AdminSettingController;
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +38,7 @@ use App\Http\Controllers\Admin\AdminPostController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/news-detail/{id}', [PostController::class, 'detail'])->name('news_detail');
 
 
 
@@ -87,6 +99,11 @@ Route::get('/admin/post-edit/{id}',[AdminPostController::class, 'post_edit'])->n
 Route::post('/admin/post-update/{id}',[AdminPostController::class, 'post_update'])->name('admin_post_update')->middleware('admin:admin');
 Route::get('/admin/post-delete/{id}',[AdminPostController::class, 'post_delete'])->name('admin_post_delete')->middleware('admin:admin');
 Route::get('/admin/post-tag-delete/{id}/{id1}',[AdminPostController::class, 'tag_delete'])->name('admin_tag_delete')->middleware('admin:admin');
+
+// Setting
+
+Route::get('/admin/setting',[AdminSettingController::class, 'index'])->name('admin_setting')->middleware('admin:admin');
+Route::post('/admin/setting-update',[AdminSettingController::class, 'setting_update'])->name('admin_setting_update')->middleware('admin:admin');
 
 
 
