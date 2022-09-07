@@ -34,13 +34,21 @@
                             </div>
 
                             <div class="form-group mb-3">
+                                <label>Show On Home?</label>
+                                <select name="show_on_home" class="form-control">
+                                    <option value="Show">Show</option>
+                                    <option value="Hide">Hide</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label>Sub Category Order *</label>
                                 <input type="text" class="form-control" name="sub_category_order" value="">
                             </div>
 
                             <div class="form-group mb-3">
                                 <label>Select Ctaegory *</label>
-                                <select name="category_id" class="form-control">
+                                <select name="category_id" class="form-control select2">
                                     @foreach ($categories as $row)
                                         <option value="{{ $row->id }}">
                                             {{ $row->category_name }}

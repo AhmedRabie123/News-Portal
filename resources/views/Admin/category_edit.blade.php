@@ -1,6 +1,6 @@
 @extends('Admin.Layout.app')
 
-@section('heading', 'Create Advertisement Update')
+@section('heading', 'Category Update')
 
 @section('button')
 

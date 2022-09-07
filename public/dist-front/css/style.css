@@ -594,6 +594,16 @@ a:hover {
 	margin-bottom: 0px;
 	display: flex;
 }
+
+
+.home-content .left .news-total-item .left-side .post-short-text {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+
 .home-content .left .news-total-item .right-side-item:last-child {
 	margin-bottom: 0px;
 }

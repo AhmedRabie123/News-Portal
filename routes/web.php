@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\PostController;
+use App\Http\Controllers\Front\SubCategoryController;
+use App\Http\Controllers\Front\PhotoController;
 
 // Admin Controller Route
 
@@ -18,6 +20,7 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminSubCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminSettingController;
+use App\Http\Controllers\Admin\AdminPhotoController;
 
 
 
@@ -39,6 +42,8 @@ use App\Http\Controllers\Admin\AdminSettingController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/news-detail/{id}', [PostController::class, 'detail'])->name('news_detail');
+Route::get('/category/{id}', [SubCategoryController::class, 'index'])->name('all_category');
+Route::get('/photo-gallery', [PhotoController::class, 'index'])->name('photo_gallery');
 
 
 
@@ -105,6 +110,12 @@ Route::get('/admin/post-tag-delete/{id}/{id1}',[AdminPostController::class, 'tag
 Route::get('/admin/setting',[AdminSettingController::class, 'index'])->name('admin_setting')->middleware('admin:admin');
 Route::post('/admin/setting-update',[AdminSettingController::class, 'setting_update'])->name('admin_setting_update')->middleware('admin:admin');
 
+// Photo Gallery
 
-
+Route::get('/admin/photo-show',[AdminPhotoController::class, 'photo_show'])->name('admin_photo_show')->middleware('admin:admin');
+Route::get('/admin/photo-create',[AdminPhotoController::class, 'photo_create'])->name('admin_photo_create')->middleware('admin:admin');
+Route::post('/admin/photo-store',[AdminPhotoController::class, 'photo_store'])->name('admin_photo_store')->middleware('admin:admin');
+Route::get('/admin/photo-edit/{id}',[AdminPhotoController::class, 'photo_edit'])->name('admin_photo_edit')->middleware('admin:admin');
+Route::post('/admin/photo-update/{id}',[AdminPhotoController::class, 'photo_update'])->name('admin_photo_update')->middleware('admin:admin');
+Route::get('/admin/photo-delete/{id}',[AdminPhotoController::class, 'photo_delete'])->name('admin_photo_delete')->middleware('admin:admin');
 

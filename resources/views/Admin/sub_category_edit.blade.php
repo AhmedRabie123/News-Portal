@@ -36,6 +36,14 @@
                             </div>
 
                             <div class="form-group mb-3">
+                                <label>Show On Home?</label>
+                                <select name="show_on_home" class="form-control">
+                                    <option value="Show" @if ($sub_category_single->show_on_home== 'Show') selected @endif>Show</option>
+                                    <option value="Hide" @if ($sub_category_single->show_on_home== 'Hide') selected @endif>Hide</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
                                 <label>Sub Category Order *</label>
                                 <input type="text" class="form-control" name="sub_category_order"
                                     value="{{ $sub_category_single->sub_category_order }}">
@@ -43,7 +51,7 @@
 
                             <div class="form-group mb-3">
                                 <label>Select Ctaegory *</label>
-                                <select name="category_id" class="form-control">
+                                <select name="category_id" class="form-control select2">
                                     @foreach ($categories as $row)
                                         <option value="{{ $row->id }}"
                                             @if ($sub_category_single->category_id == $row->id) selected @endif>
@@ -62,7 +70,7 @@
 
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
     </div>
