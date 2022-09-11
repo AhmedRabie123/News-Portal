@@ -44,10 +44,26 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="right">
-                        <li class="menu"><a href="faq.html">FAQ</a></li>
-                        <li class="menu"><a href="{{ route('about') }}">About</a></li>
-                        <li class="menu"><a href="contact.html">Contact</a></li>
-                        <li class="menu"><a href="login.html">Login</a></li>
+                        @if ($global_page_data->faq_status == 'Show')
+                            <li class="menu"><a href="{{ route('faq') }}">{{ $global_page_data->faq_title }}</a></li>
+                        @endif
+
+                        @if ($global_page_data->about_status == 'Show')
+                            <li class="menu"><a href="{{ route('about') }}">{{ $global_page_data->about_title }}</a>
+                            </li>
+                        @endif
+
+                        @if ($global_page_data->contact_status == 'Show')
+                            <li class="menu"><a
+                                    href="{{ route('contact') }}">{{ $global_page_data->contact_title }}</a>
+                            </li>
+                        @endif
+
+                        @if ($global_page_data->login_status == 'Show')
+                            <li class="menu"><a href="{{ route('login') }}">{{ $global_page_data->login_title }}</a>
+                            </li>
+                        @endif
+
                         <li>
                             <div class="language-switch">
                                 <select name="">
@@ -121,11 +137,22 @@
                     <div class="item">
                         <h2 class="heading">Useful Links</h2>
                         <ul class="useful-links">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="terms.html">Terms and Conditions</a></li>
-                            <li><a href="privacy.html">Privacy Policy</a></li>
-                            <li><a href="disclaimer.html">Disclaimer</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            @if ($global_page_data->terms_status == 'Show')
+                                <li><a href="{{ route('terms') }}">{{ $global_page_data->terms_title }}</a></li>
+                            @endif
+                            @if ($global_page_data->privacy_status == 'Show')
+                                <li><a href="{{ route('privacy') }}">{{ $global_page_data->privacy_title }}</a></li>
+                            @endif
+                            @if ($global_page_data->disclaimer_status == 'Show')
+                                <li><a href="{{ route('disclaimer') }}">{{ $global_page_data->disclaimer_title }}</a>
+                                </li>
+                            @endif
+                            @if ($global_page_data->contact_status == 'Show')
+                                <li class="menu"><a
+                                        href="{{ route('contact') }}">{{ $global_page_data->contact_title }}</a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

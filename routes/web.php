@@ -6,9 +6,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\FaqController;
+use App\Http\Controllers\Front\TermsController;
+use App\Http\Controllers\Front\PrivacyController;
+use App\Http\Controllers\Front\DisclaimerController;
+use App\Http\Controllers\Front\LoginController;
 use App\Http\Controllers\Front\PostController;
 use App\Http\Controllers\Front\SubCategoryController;
 use App\Http\Controllers\Front\PhotoController;
+use App\Http\Controllers\Front\VideoController;
 
 // Admin Controller Route
 
@@ -21,6 +28,8 @@ use App\Http\Controllers\Admin\AdminSubCategoryController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminPhotoController;
+use App\Http\Controllers\Admin\AdminVideoController;
+use App\Http\Controllers\Admin\AdminPageController;
 
 
 
@@ -41,9 +50,16 @@ use App\Http\Controllers\Admin\AdminPhotoController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+Route::get('/terms & conditions', [TermsController::class, 'index'])->name('terms');
+Route::get('/privacy & policy', [PrivacyController::class, 'index'])->name('privacy');
+Route::get('/disclaimer', [DisclaimerController::class, 'index'])->name('disclaimer');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/news-detail/{id}', [PostController::class, 'detail'])->name('news_detail');
 Route::get('/category/{id}', [SubCategoryController::class, 'index'])->name('all_category');
 Route::get('/photo-gallery', [PhotoController::class, 'index'])->name('photo_gallery');
+Route::get('/video-gallery', [VideoController::class, 'index'])->name('video_gallery');
 
 
 
@@ -118,4 +134,95 @@ Route::post('/admin/photo-store',[AdminPhotoController::class, 'photo_store'])->
 Route::get('/admin/photo-edit/{id}',[AdminPhotoController::class, 'photo_edit'])->name('admin_photo_edit')->middleware('admin:admin');
 Route::post('/admin/photo-update/{id}',[AdminPhotoController::class, 'photo_update'])->name('admin_photo_update')->middleware('admin:admin');
 Route::get('/admin/photo-delete/{id}',[AdminPhotoController::class, 'photo_delete'])->name('admin_photo_delete')->middleware('admin:admin');
+
+// video Gallery
+
+Route::get('/admin/video-show',[AdminVideoController::class, 'video_show'])->name('admin_video_show')->middleware('admin:admin');
+Route::get('/admin/video-create',[AdminVideoController::class, 'video_create'])->name('admin_video_create')->middleware('admin:admin');
+Route::post('/admin/video-store',[AdminVideoController::class, 'video_store'])->name('admin_video_store')->middleware('admin:admin');
+Route::get('/admin/video-edit/{id}',[AdminVideoController::class, 'video_edit'])->name('admin_video_edit')->middleware('admin:admin');
+Route::post('/admin/video-update/{id}',[AdminVideoController::class, 'video_update'])->name('admin_video_update')->middleware('admin:admin');
+Route::get('/admin/video-delete/{id}',[AdminVideoController::class, 'video_delete'])->name('admin_video_delete')->middleware('admin:admin');
+
+// Pages
+
+// About Page
+
+Route::get('/admin/page/about',[AdminPageController::class, 'admin_about_show'])->name('admin_page_about')->middleware('admin:admin');
+Route::post('/admin/page/about/update',[AdminPageController::class, 'admin_about_update'])->name('admin_page_about_update')->middleware('admin:admin');
+
+// FAQ Page
+
+Route::get('/admin/page/faq',[AdminPageController::class, 'admin_faq_show'])->name('admin_page_faq')->middleware('admin:admin');
+Route::post('/admin/page/faq/update',[AdminPageController::class, 'admin_faq_update'])->name('admin_page_faq_update')->middleware('admin:admin');
+
+// Terms Page
+
+Route::get('/admin/page/terms',[AdminPageController::class, 'admin_terms_show'])->name('admin_page_terms')->middleware('admin:admin');
+Route::post('/admin/page/terms/update',[AdminPageController::class, 'admin_terms_update'])->name('admin_page_terms_update')->middleware('admin:admin');
+
+// Privacy Page
+
+Route::get('/admin/page/Privacy',[AdminPageController::class, 'admin_Privacy_show'])->name('admin_page_Privacy')->middleware('admin:admin');
+Route::post('/admin/page/Privacy/update',[AdminPageController::class, 'admin_Privacy_update'])->name('admin_page_Privacy_update')->middleware('admin:admin');
+
+// Disclaimer Page
+
+Route::get('/admin/page/disclaimer',[AdminPageController::class, 'admin_disclaimer_show'])->name('admin_page_disclaimer')->middleware('admin:admin');
+Route::post('/admin/page/disclaimer/update',[AdminPageController::class, 'admin_disclaimer_update'])->name('admin_page_disclaimer_update')->middleware('admin:admin');
+
+// Login Page
+
+Route::get('/admin/page/login',[AdminPageController::class, 'admin_login_show'])->name('admin_page_login')->middleware('admin:admin');
+Route::post('/admin/page/login/update',[AdminPageController::class, 'admin_login_update'])->name('admin_page_login_update')->middleware('admin:admin');
+
+// Contact Page
+
+Route::get('/admin/page/contact',[AdminPageController::class, 'admin_contact_show'])->name('admin_page_contact')->middleware('admin:admin');
+Route::post('/admin/page/contact/update',[AdminPageController::class, 'admin_contact_update'])->name('admin_page_contact_update')->middleware('admin:admin');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

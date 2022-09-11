@@ -21,7 +21,9 @@ class AdminSettingController extends Controller
 
         $request->validate([
           
-            'news_ticker_total' => 'required'
+            'news_ticker_total' => 'required',
+            'video_total' => 'required'
+
 
         ]);
 
@@ -30,6 +32,8 @@ class AdminSettingController extends Controller
 
         $setting->news_ticker_total = $request->news_ticker_total;
         $setting->news_ticker_status = $request->news_ticker_status;
+        $setting->video_total = $request->video_total;
+        $setting->video_status = $request->video_status;
         $setting->update();
 
         return redirect()->route('admin_setting')->with('success', 'Setting Updated successfully.');

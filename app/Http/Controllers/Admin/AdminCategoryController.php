@@ -71,6 +71,7 @@ class AdminCategoryController extends Controller
     public function category_delete($id)
     {
         $category_single = Category::where('id',$id)->first();
+        //$category_single->rSubCategory()->delete();
         $category_single->delete();
 
         return redirect()->route('admin_category_show')->with('success', 'Category deleted successfully.');

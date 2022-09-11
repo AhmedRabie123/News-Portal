@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="photo-caption">
-                                <a href="">{{ $item->caption }}</a>
+                                <a href="javascript:void;">{{ $item->caption }}</a>
                             </div>
                             <div class="photo-date">
                                 @php

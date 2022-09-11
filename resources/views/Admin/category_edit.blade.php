@@ -29,8 +29,8 @@
                             <div class="form-group mb-3">
                                 <label>Show On Menu</label>
                                 <select name="show_on_menu" class="form-control">
-                                    <option value="Top" @if ( $category_single->category_on_menu == 'Show') selected @endif>Top</option>
-                                    <option value="Bottom" @if ($category_single->category_on_menu  == 'Hide') selected @endif>Bottom</option>
+                                    <option value="Show" @if ($category_single->show_on_menu == 'Show') selected @endif>Show</option>
+                                    <option value="Hide" @if ($category_single->show_on_menu  == 'Hide') selected @endif>Hide</option>
                                 </select>
                             </div>
 
