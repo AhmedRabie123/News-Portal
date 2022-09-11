@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminPageController;
+use App\Http\Controllers\Admin\AdminFaqController;
 
 
 
@@ -51,6 +52,7 @@ use App\Http\Controllers\Admin\AdminPageController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/send-email', [ContactController::class, 'send_email'])->name('contact_form_submit');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/terms & conditions', [TermsController::class, 'index'])->name('terms');
 Route::get('/privacy & policy', [PrivacyController::class, 'index'])->name('privacy');
@@ -181,6 +183,14 @@ Route::post('/admin/page/login/update',[AdminPageController::class, 'admin_login
 Route::get('/admin/page/contact',[AdminPageController::class, 'admin_contact_show'])->name('admin_page_contact')->middleware('admin:admin');
 Route::post('/admin/page/contact/update',[AdminPageController::class, 'admin_contact_update'])->name('admin_page_contact_update')->middleware('admin:admin');
 
+// FAQ Section
+
+Route::get('/admin/faq-show',[AdminFaqController::class, 'faq_show'])->name('admin_faq_show')->middleware('admin:admin');
+Route::get('/admin/faq-create',[AdminFaqController::class, 'faq_create'])->name('admin_faq_create')->middleware('admin:admin');
+Route::post('/admin/faq-store',[AdminFaqController::class, 'faq_store'])->name('admin_faq_store')->middleware('admin:admin');
+Route::get('/admin/faq-edit/{id}',[AdminFaqController::class, 'faq_edit'])->name('admin_faq_edit')->middleware('admin:admin');
+Route::post('/admin/faq-update/{id}',[AdminFaqController::class, 'faq_update'])->name('admin_faq_update')->middleware('admin:admin');
+Route::get('/admin/faq-delete/{id}',[AdminFaqController::class, 'faq_delete'])->name('admin_faq_delete')->middleware('admin:admin');
 
 
 
