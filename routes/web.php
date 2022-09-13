@@ -16,6 +16,7 @@ use App\Http\Controllers\Front\PostController;
 use App\Http\Controllers\Front\SubCategoryController;
 use App\Http\Controllers\Front\PhotoController;
 use App\Http\Controllers\Front\VideoController;
+use App\Http\Controllers\Front\SubscriberController;
 
 // Admin Controller Route
 
@@ -31,6 +32,7 @@ use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminFaqController;
+use App\Http\Controllers\Admin\AdminSubscriberController;
 
 
 
@@ -49,19 +51,47 @@ use App\Http\Controllers\Admin\AdminFaqController;
 
 /* Front Rnd  */
 
+
+// Home Page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// About Page
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+// Contact Page
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/send-email', [ContactController::class, 'send_email'])->name('contact_form_submit');
+
+// FAQ Page
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+
+// Terms & Condition Page
 Route::get('/terms & conditions', [TermsController::class, 'index'])->name('terms');
+
+// Privacy Page
 Route::get('/privacy & policy', [PrivacyController::class, 'index'])->name('privacy');
+
+// Disclaimer Page
 Route::get('/disclaimer', [DisclaimerController::class, 'index'])->name('disclaimer');
+
+// Login Page
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+// News Detail Page
 Route::get('/news-detail/{id}', [PostController::class, 'detail'])->name('news_detail');
+
+// Category Section
 Route::get('/category/{id}', [SubCategoryController::class, 'index'])->name('all_category');
+
+// Photo Gallery Page
 Route::get('/photo-gallery', [PhotoController::class, 'index'])->name('photo_gallery');
+
+// Video Gallery Page
 Route::get('/video-gallery', [VideoController::class, 'index'])->name('video_gallery');
+
+// Subscribe Section
+Route::post('/subscriber', [SubscriberController::class, 'index'])->name('subscribe');
+Route::get('/subscriber/verified/{token}/{email}', [SubscriberController::class, 'subscriber_verified'])->name('subscriber_verified');
 
 
 
@@ -192,6 +222,11 @@ Route::get('/admin/faq-edit/{id}',[AdminFaqController::class, 'faq_edit'])->name
 Route::post('/admin/faq-update/{id}',[AdminFaqController::class, 'faq_update'])->name('admin_faq_update')->middleware('admin:admin');
 Route::get('/admin/faq-delete/{id}',[AdminFaqController::class, 'faq_delete'])->name('admin_faq_delete')->middleware('admin:admin');
 
+// Subscriber Section
+
+Route::get('/admin/subscriber/show',[AdminSubscriberController::class, 'subscriber_show'])->name('admin_subscribers')->middleware('admin:admin');
+Route::get('/admin/subscriber/send-email',[AdminSubscriberController::class, 'subscriber_send_email'])->name('admin_subscriber_send_email')->middleware('admin:admin');
+Route::post('/admin/subscriber/send-email/submit',[AdminSubscriberController::class, 'subscriber_send_email_submit'])->name('admin_subscriber_send_email_submit')->middleware('admin:admin');
 
 
 

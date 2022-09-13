@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Mail\WebsiteMail;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Tag;
+use App\Models\Subscriber;
 use Auth;
 use DB;
 
@@ -83,7 +85,20 @@ class AdminPostController extends Controller
         }
       
 
+        if($request->subscriber_send_option == 1){
+                   
+            $subject = 'A New Post Is Published';
+            $message = 'Hi : A New Post Is Published Into Our Website. Please Go To See That Post <br>';
+            $message .= '<a target="_blank" href="'.route('news_detail', $ai_id).'">';
+            $message .= $request->post_title;
+            $message .= '</a>';
 
+            $subscribers = Subscriber::where('status', 'Active')->get();
+            foreach($subscribers as $row){
+                \Mail::To($row->email)->send(new WebsiteMail($subject, $message));
+            }
+            
+        }
 
         return redirect()->route('admin_post_show')->with('success', 'Post Created successfully.');
     }
