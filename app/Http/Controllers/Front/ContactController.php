@@ -47,7 +47,7 @@ class ContactController extends Controller
 
              \Mail::to($admin_data->email)->send(new WebsiteMail($subject, $message));
 
-            return response()->json(['code'=>1, 'success_message'=>'Email Is Sent!']);
+            return response()->json(['code'=>1, 'success_message'=>'Email Is Sent Successfully!']);
         }
 
     }

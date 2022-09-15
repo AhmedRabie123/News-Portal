@@ -20,7 +20,7 @@ class HomeController extends Controller
        $setting_data = Setting::where('id', 1)->first();
        $post_data = Post::with('rSubCategory')->orderBy('id', 'desc')->get();
        $sub_category_data = SubCategory::with('rPost')->orderBy('sub_category_order', 'asc')->where('show_on_home', 'Show')->get();
-       $videos = Video::orderBy('id', 'desc');
+       $videos = Video::orderBy('id', 'desc')->get();
        return view('Front.home', compact('home_ad_data','setting_data','post_data','sub_category_data','videos'));
 
    }

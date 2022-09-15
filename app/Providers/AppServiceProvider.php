@@ -7,7 +7,9 @@ use Illuminate\Pagination\Paginator;
 use App\Models\TopAdvertisement;
 use App\Models\SidebarAdvertisement;
 use App\Models\Category;
+use App\Models\LiveChannel;
 use App\Models\Page;
+use App\Models\Post;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -46,6 +48,18 @@ class AppServiceProvider extends ServiceProvider
         // Category
         $categories = Category::with('rSubCategory')->where('show_on_menu','Show')->orderBy('category_order', 'asc')->get();
         view()->share('global_categories',  $categories);
+
+        // Live Chanel
+        $live_channel_data = LiveChannel::get();
+        view()->share('global_live_channel_data',  $live_channel_data);
+
+        // Popular News  
+        $popular_news_data = Post::with('rSubCategory')->orderBy('visitors','desc')->get();
+        view()->share('global_popular_news_data',  $popular_news_data);
+
+        // Recent News  
+        $recent_news_data = Post::with('rSubCategory')->orderBy('id', 'desc')->get();
+        view()->share('global_recent_news_data',  $recent_news_data);
 
          // pages
          $page_data = Page::where('id', 1)->first();
