@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\LiveChannel;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\OnlinePoll;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -64,5 +65,9 @@ class AppServiceProvider extends ServiceProvider
          // pages
          $page_data = Page::where('id', 1)->first();
          view()->share('global_page_data',  $page_data);
+
+        // Online Poll
+        $online_poll_data = OnlinePoll::orderBy('id', 'desc')->first();
+        view()->share('global_online_poll_data', $online_poll_data);
     }
 }

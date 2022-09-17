@@ -17,6 +17,8 @@ use App\Http\Controllers\Front\SubCategoryController;
 use App\Http\Controllers\Front\PhotoController;
 use App\Http\Controllers\Front\VideoController;
 use App\Http\Controllers\Front\SubscriberController;
+use App\Http\Controllers\Front\OnlinePollController;
+use App\Http\Controllers\Front\ArchiveController;
 
 // Admin Controller Route
 
@@ -94,6 +96,15 @@ Route::get('/video-gallery', [VideoController::class, 'index'])->name('video_gal
 // Subscribe Section
 Route::post('/subscriber', [SubscriberController::class, 'index'])->name('subscribe');
 Route::get('/subscriber/verified/{token}/{email}', [SubscriberController::class, 'subscriber_verified'])->name('subscriber_verified');
+
+// Online Poll Section
+Route::post('/online-poll', [OnlinePollController::class, 'submit'])->name('online_poll_submit');
+Route::get('/online-poll', [OnlinePollController::class, 'previous_poll'])->name('poll_previous');
+
+// Archive Section
+Route::post('/archive/show', [ArchiveController::class, 'show'])->name('archive_show');
+Route::get('/archive/{year}/{month}', [ArchiveController::class, 'archive_detail'])->name('archive_detail');
+
 
 
 

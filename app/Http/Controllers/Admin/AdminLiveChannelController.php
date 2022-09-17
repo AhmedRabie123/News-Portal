@@ -11,7 +11,7 @@ class AdminLiveChannelController extends Controller
     public function live_channel_show()
     {
         $live_channels = LiveChannel::orderBy('id','DESC')->get();
-        return view('admin.live_channel', compact('live_channels'));
+        return view('admin.live_channel_show', compact('live_channels'));
     }
 
     public function live_channel_create()
