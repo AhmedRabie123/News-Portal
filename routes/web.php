@@ -19,6 +19,7 @@ use App\Http\Controllers\Front\VideoController;
 use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\OnlinePollController;
 use App\Http\Controllers\Front\ArchiveController;
+use App\Http\Controllers\Front\TagController;
 
 // Admin Controller Route
 
@@ -58,6 +59,12 @@ use App\Http\Controllers\Admin\AdminOnlinePollController;
 
 // Home Page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// search section Get Subcategory By Category
+Route::get('/subcategory-by-category/{id}', [HomeController::class, 'get_subcategory_by_category'])->name('subcategory_by_category');
+
+// search Page result
+Route::post('/search/result', [HomeController::class, 'search'])->name('search_result');
 
 // About Page
 Route::get('/about', [AboutController::class, 'index'])->name('about');
@@ -105,7 +112,8 @@ Route::get('/online-poll', [OnlinePollController::class, 'previous_poll'])->name
 Route::post('/archive/show', [ArchiveController::class, 'show'])->name('archive_show');
 Route::get('/archive/{year}/{month}', [ArchiveController::class, 'archive_detail'])->name('archive_detail');
 
-
+// Tag Section
+Route::get('/tag/{tag_name}', [TagController::class, 'show'])->name('tag_post_show');
 
 
 
