@@ -21,6 +21,12 @@ use App\Http\Controllers\Front\OnlinePollController;
 use App\Http\Controllers\Front\ArchiveController;
 use App\Http\Controllers\Front\TagController;
 
+
+// Author Controller Route
+
+use App\Http\Controllers\Author\AuthorHomeController;
+use App\Http\Controllers\Author\AuthorProfileController;
+
 // Admin Controller Route
 
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -39,6 +45,7 @@ use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Admin\AdminLiveChannelController;
 use App\Http\Controllers\Admin\AdminOnlinePollController;
 use App\Http\Controllers\Admin\AdminSocialItemController;
+use App\Http\Controllers\Admin\AdminAuthorController;
 
 
 
@@ -86,9 +93,6 @@ Route::get('/privacy & policy', [PrivacyController::class, 'index'])->name('priv
 // Disclaimer Page
 Route::get('/disclaimer', [DisclaimerController::class, 'index'])->name('disclaimer');
 
-// Login Page
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-
 // News Detail Page
 Route::get('/news-detail/{id}', [PostController::class, 'detail'])->name('news_detail');
 
@@ -115,6 +119,24 @@ Route::get('/archive/{year}/{month}', [ArchiveController::class, 'archive_detail
 
 // Tag Section
 Route::get('/tag/{tag_name}', [TagController::class, 'show'])->name('tag_post_show');
+
+// Login Page
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/author/login-submit',[LoginController::class, 'author_login_submit'])->name('author_login_submit');
+Route::get('/author/logout',[LoginController::class, 'author_logout'])->name('author_logout');
+
+
+/* Author  */
+
+Route::get('/author/home',[AuthorHomeController::class, 'index'])->name('author_home')->middleware('author:author');
+Route::get('/author/edit-profile',[AuthorProfileController::class, 'author_edit_profile'])->name('author_edit_profile')->middleware('author:author');
+Route::post('/author/edit-profile-submit',[AuthorProfileController::class, 'author_profile_submit'])->name('author_profile_submit');
+
+
+
+
+
+
 
 
 
@@ -277,6 +299,14 @@ Route::get('/admin/social-item/edit/{id}',[AdminSocialItemController::class, 'so
 Route::post('/admin/social-item/update/{id}',[AdminSocialItemController::class, 'social_item_update'])->name('admin_social_item_update')->middleware('admin:admin');
 Route::get('/admin/social-item/delete/{id}',[AdminSocialItemController::class, 'social_item_delete'])->name('admin_social_item_delete')->middleware('admin:admin');
 
+// Author Section
+
+Route::get('/admin/author/show',[AdminAuthorController::class, 'author_show'])->name('admin_author_show')->middleware('admin:admin');
+Route::get('/admin/author/create',[AdminAuthorController::class, 'author_create'])->name('admin_author_create')->middleware('admin:admin');
+Route::post('/admin/author/store',[AdminAuthorController::class, 'author_store'])->name('admin_author_store')->middleware('admin:admin');
+Route::get('/admin/author/edit/{id}',[AdminAuthorController::class, 'author_edit'])->name('admin_author_edit')->middleware('admin:admin');
+Route::post('/admin/author/update/{id}',[AdminAuthorController::class, 'author_update'])->name('admin_author_update')->middleware('admin:admin');
+Route::get('/admin/author/delete/{id}',[AdminAuthorController::class, 'author_delete'])->name('admin_author_delete')->middleware('admin:admin');
 
 
 
