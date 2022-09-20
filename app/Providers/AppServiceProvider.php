@@ -11,6 +11,7 @@ use App\Models\LiveChannel;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\OnlinePoll;
+use App\Models\SocialItem;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -69,5 +70,9 @@ class AppServiceProvider extends ServiceProvider
         // Online Poll
         $online_poll_data = OnlinePoll::orderBy('id', 'desc')->first();
         view()->share('global_online_poll_data', $online_poll_data);
+
+         // Social Item
+         $social_item_data = SocialItem::get();
+         view()->share('global_social_item_data', $social_item_data);
     }
 }

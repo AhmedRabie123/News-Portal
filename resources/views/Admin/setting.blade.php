@@ -1,6 +1,6 @@
 @extends('Admin.Layout.app')
 
-@section('heading', 'Caregories')
+@section('heading', 'Setting Page')
 
 
 @section('main_content')

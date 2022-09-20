@@ -93,7 +93,7 @@
                 </ul>
             </li>
 
-            <li class="{{ Request::is('admin/faq/*') ? 'active' : '' }}"><a class="nav-link"
+            <li class="{{ Request::is('admin/faq*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_faq_show') }}"><i class="fas fa-hand-point-right"></i>
                     <span>FAQ Section</span></a></li>
 
@@ -114,13 +114,18 @@
                 </ul>
             </li>
 
-            <li class="{{ Request::is('admin/live-channel/*') ? 'active' : '' }}"><a class="nav-link"
+            <li class="{{ Request::is('admin/live-channel*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_live_channel_show') }}"><i class="fas fa-hand-point-right"></i>
                     <span>Live Channel</span></a></li>
 
-            <li class="{{ Request::is('admin/live-poll/*') ? 'active' : '' }}"><a class="nav-link"
+            <li class="{{ Request::is('admin/online-poll/*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_online_poll_show') }}"><i class="fas fa-hand-point-right"></i>
                     <span>Online Polls</span></a></li>
+
+            <li class="{{ Request::is('admin/social-item/*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('admin_social_item_show') }}"><i class="fas fa-hand-point-right"></i>
+                    <span>Social Item</span></a></li>
+
 
 
             {{-- <li class="nav-item dropdown active">

@@ -29,8 +29,12 @@ class PostController extends Controller
 
         $post_detail->visitors = $new_values;
         $post_detail->update();
+
+       // dd($post_detail->sub_category_id);
+
+       $related_post_array = Post::with('rSubCategory')->orderBy('id','desc')->where('sub_category_id', $post_detail->sub_category_id)->get();
         
-        return view('Front.post_detail', compact('post_detail','user_data','tag_data'));
+        return view('Front.post_detail', compact('post_detail','user_data','tag_data','related_post_array'));
 
     }
 }
