@@ -66,7 +66,7 @@ class AdminLoginController extends Controller
 
     public function admin_forget_password_submit(Request $request)
     {
-         ;
+         
        //  dd($request->email);
 
        $request->validate([

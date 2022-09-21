@@ -14,7 +14,7 @@
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                             <li class="breadcrumb-item">Tag</li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $tag_name }}</li>
-                           
+
                         </ol>
                     </nav>
                 </div>
@@ -52,16 +52,16 @@
                                                     @if ($item->author_id == 0)
                                                         @php  $user_data = \App\Models\Admin::where('id', $item->admin_id)->first();    @endphp
                                                     @else
-                                                        {{-- i will write this later. --}}
+                                                        @php  $user_data = \App\Models\Author::where('id', $item->author_id)->first();    @endphp
                                                     @endif
-                                                    <a href="">{{ $user_data->name }}</a>
+                                                    <a href="javascript:void;">{{ $user_data->name }}</a>
                                                 </div>
                                                 <div class="date">
                                                     @php
                                                         $ts = strtotime($item->updated_at);
                                                         $updated_date = date('d F, Y', $ts);
                                                     @endphp
-                                                    <a href="">{{ $updated_date }}</a>
+                                                    <a href="javascript:void;">{{ $updated_date }}</a>
                                                 </div>
                                             </div>
                                         </div>

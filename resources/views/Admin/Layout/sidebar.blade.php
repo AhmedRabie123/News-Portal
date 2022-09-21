@@ -17,22 +17,9 @@
                     href="{{ route('admin_setting') }}"><i class="fas fa-hand-point-right"></i>
                     <span>Setting</span></a></li>
 
-
-            <li class="nav-item dropdown {{ Request::is('admin/author/*') ? 'active' : '' }} ">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Author
-                        Section</span></a>
-                <ul class="dropdown-menu">
-                    <li class="{{ Request::is('admin/author/show*') ? 'active' : '' }}"><a class="nav-link"
-                            href="{{ route('admin_author_show') }}"><i class="fas fa-angle-right"></i> All
-                            Author List
-                        </a></li>
-                    <li class="{{ Request::is('admin/subscriber/send-email*') ? 'active' : '' }}"><a class="nav-link"
-                            href=""><i class="fas fa-angle-right"></i>
-                            Author Posts
-                        </a></li>
-                </ul>
-            </li>
-
+                    <li class="{{ Request::is('admin/author/*') ? 'active' : '' }}"><a class="nav-link"
+                        href="{{ route('admin_author_show') }}"><i class="fas fa-hand-point-right"></i>
+                        <span> Author List</span></a></li>
 
             <li
                 class="nav-item dropdown {{ Request::is('admin/top-advertisement') || Request::is('admin/home-advertisement') || Request::is('admin/sidebar-advertisement-*') ? 'active' : '' }} ">

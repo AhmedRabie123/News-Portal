@@ -17,4 +17,4 @@
 <script src="{{ asset('dist/js/fontawesome-iconpicker.js') }}"></script>
 <script src="{{ asset('dist/js/bootstrap4-toggle.min.js') }}"></script> --}}
 
-{{-- @include('Admin.Layout.scripts') --}}
+@include('Admin.Layout.scripts')

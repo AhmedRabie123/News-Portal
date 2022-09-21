@@ -15,4 +15,4 @@
 <link rel="stylesheet" href="{{ asset('dist/css/spacing.css') }}">
 <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}"> --}}
 
-{{-- @include('Admin.Layout.styles') --}}
+@include('Admin.Layout.styles')

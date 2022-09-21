@@ -13,10 +13,9 @@
                     href="{{ route('author_home') }}"><i class="fas fa-hand-point-right"></i>
                     <span>Dashboard</span></a></li>
 
-            {{-- <li class="{{ Request::is('admin/setting') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_setting') }}"><i class="fas fa-hand-point-right"></i>
-                    <span>Setting</span></a></li> --}}
-
+             <li class="{{ Request::is('author/post-show*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('author_post_show') }}"><i class="fas fa-hand-point-right"></i>
+                    <span>Posts</span></a></li> 
 
            
 

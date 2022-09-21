@@ -26,6 +26,7 @@ use App\Http\Controllers\Front\TagController;
 
 use App\Http\Controllers\Author\AuthorHomeController;
 use App\Http\Controllers\Author\AuthorProfileController;
+use App\Http\Controllers\Author\AuthorPostController;
 
 // Admin Controller Route
 
@@ -62,7 +63,7 @@ use App\Http\Controllers\Admin\AdminAuthorController;
 |
 */
 
-/* Front Rnd  */
+/* Front Rnd Route */
 
 
 // Home Page
@@ -125,22 +126,38 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/author/login-submit',[LoginController::class, 'author_login_submit'])->name('author_login_submit');
 Route::get('/author/logout',[LoginController::class, 'author_logout'])->name('author_logout');
 
+/* Author Route */
+// Author Forget Password section
 
-/* Author  */
+Route::get('/author/forget-password',[LoginController::class, 'author_forget_password'])->name('author_forget_password');
+Route::post('/author/forget-password-submit',[LoginController::class, 'author_forget_password_submit'])->name('author_forget_password_submit');
+Route::get('/author/reset-password/{token}/{email}',[LoginController::class, 'author_reset_password'])->name('author_reset_password');
+Route::post('/author/reset-password-submit',[LoginController::class, 'author_reset_password_submit'])->name('author_reset_password_submit');
+
+/* Author Route */
+
+// Author home section
 
 Route::get('/author/home',[AuthorHomeController::class, 'index'])->name('author_home')->middleware('author:author');
+
+// Author profile section
+
 Route::get('/author/edit-profile',[AuthorProfileController::class, 'author_edit_profile'])->name('author_edit_profile')->middleware('author:author');
 Route::post('/author/edit-profile-submit',[AuthorProfileController::class, 'author_profile_submit'])->name('author_profile_submit');
 
+// Author Post section
+
+Route::get('/author/post-show',[AuthorPostController::class, 'author_post_show'])->name('author_post_show')->middleware('author:author');
+Route::get('/author/post-create',[AuthorPostController::class, 'author_post_create'])->name('author_post_create')->middleware('author:author');
+Route::post('/author/post-store',[AuthorPostController::class, 'author_post_store'])->name('author_post_store')->middleware('author:author');
+Route::get('/author/post-edit/{id}',[AuthorPostController::class, 'author_post_edit'])->name('author_post_edit')->middleware('author:author');
+Route::post('/author/post-update/{id}',[AuthorPostController::class, 'author_post_update'])->name('author_post_update')->middleware('author:author');
+Route::get('/author/post-delete/{id}',[AuthorPostController::class, 'author_post_delete'])->name('author_post_delete')->middleware('author:author');
+Route::get('/author/post-tag-delete/{id}/{id1}',[AuthorPostController::class, 'author_tag_delete'])->name('author_tag_delete')->middleware('author:author');
 
 
 
-
-
-
-
-
-/* Admin */ 
+/* Admin Route */ 
 
 Route::get('/admin/home',[AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
 Route::get('/admin/login',[AdminLoginController::class, 'admin_login'])->name('admin_login');

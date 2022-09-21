@@ -21,7 +21,9 @@
         </div>
         <div class="tag">
             @php
-                $all_tags = \App\Models\Tag::select('tag_name')->distinct()->get();
+                $all_tags = \App\Models\Tag::select('tag_name')
+                    ->distinct()
+                    ->get();
                 // foreach ($all_tags as $item) {
                 //    echo $item->tag_name;
                 //    echo '<br>';
@@ -29,9 +31,10 @@
             @endphp
 
             @foreach ($all_tags as $item)
-            <div class="tag-item">
-                <a href="{{ route('tag_post_show',$item->tag_name) }}"><span class="badge bg-secondary">{{ $item->tag_name }}</span></a>
-            </div>
+                <div class="tag-item">
+                    <a href="{{ route('tag_post_show', $item->tag_name) }}"><span
+                            class="badge bg-secondary">{{ $item->tag_name }}</span></a>
+                </div>
             @endforeach
         </div>
     </div>
@@ -66,7 +69,8 @@
                         @php
                             $temp_arr = explode('-', $archive_array[$i]);
                         @endphp
-                        <option value="{{ $temp_arr[0] . '-' . $temp_arr[2] }}">{{ $temp_arr[1] }}, {{ $temp_arr[2] }}</option>
+                        <option value="{{ $temp_arr[0] . '-' . $temp_arr[2] }}">{{ $temp_arr[1] }}, {{ $temp_arr[2] }}
+                        </option>
 
                         }
                     @endfor
@@ -137,16 +141,16 @@
                                 @if ($item->author_id == 0)
                                     @php  $user_data = \App\Models\Admin::where('id', $item->admin_id)->first();    @endphp
                                 @else
-                                    {{-- i will write this later. --}}
+                                @php  $user_data = \App\Models\Author::where('id', $item->author_id)->first();    @endphp
                                 @endif
-                                <a href="">{{ $user_data->name }}</a>
+                                <a href="javascript:void;">{{ $user_data->name }}</a>
                             </div>
                             <div class="date">
                                 @php
                                     $ts = strtotime($item->updated_at);
                                     $updated_date = date('d F, Y', $ts);
                                 @endphp
-                                <a href="">{{ $updated_date }}</a>
+                                <a href="javascript:void;">{{ $updated_date }}</a>
                             </div>
                         </div>
                     </div>
@@ -174,16 +178,16 @@
                             @if ($item->author_id == 0)
                                 @php  $user_data = \App\Models\Admin::where('id', $item->admin_id)->first();    @endphp
                             @else
-                                {{-- i will write this later. --}}
+                                @php  $user_data = \App\Models\Author::where('id', $item->author_id)->first();    @endphp
                             @endif
-                            <a href="">{{ $user_data->name }}</a>
+                            <a href="javascript:void;">{{ $user_data->name }}</a>
                         </div>
                         <div class="date">
                             @php
                                 $ts = strtotime($item->updated_at);
                                 $updated_date = date('d F, Y', $ts);
                             @endphp
-                            <a href="">{{ $updated_date }}</a>
+                            <a href="javascript:void;">{{ $updated_date }}</a>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\Admin;
+use App\Models\Author;
 
 class PostController extends Controller
 {
@@ -20,7 +21,7 @@ class PostController extends Controller
            $user_data = Admin::where('id', $post_detail->admin_id)->first();
            //dd($user_data->name);
         } else {
-          //showing later
+           $user_data = Author::where('id', $post_detail->author_id)->first();
         }
 
         //update page view count

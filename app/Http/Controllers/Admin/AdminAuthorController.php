@@ -97,7 +97,6 @@ class AdminAuthorController extends Controller
         ]);
 
 
-
         if ($request->password != '') {
             $request->validate([
                 'password' => 'required',

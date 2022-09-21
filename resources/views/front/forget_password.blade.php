@@ -1,6 +1,6 @@
 @extends('front.layout.app')
 
-@section('title', 'Login Page')
+@section('title', 'Forget Password Page')
 
 @section('main_content')
 
@@ -8,11 +8,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>{{ $page_data->login_title }}</h2>
+                    <h2>Forget Password</h2>
                     <nav class="breadcrumb-container">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ $page_data->login_title }}</li>
+                            <li class="breadcrumb-item active" aria-current="page">Forget Password</li>
                         </ol>
                     </nav>
                 </div>
@@ -24,20 +24,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <form action="{{ route('author_login_submit') }}" method="post">
+                    <form action="{{ route('author_forget_password_submit') }}" method="post">
                         @csrf
                         <div class="login-form">
                             <div class="mb-3">
                                 <label for="" class="form-label">Email Address</label>
                                 <input type="text" class="form-control" name="email">
                             </div>
+                       
                             <div class="mb-3">
-                                <label for="" class="form-label">Password</label>
-                                <input type="password" class="form-control" name="password">
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary bg-website">Login</button>
-                                <a href="{{ route('author_forget_password') }}">Forget Password</a>
+                                <button type="submit" class="btn btn-primary bg-website">Submit</button>
+                                <a href="{{ route('login') }}">Back TO Login</a>
                             </div>
                         </div>
                     </form>
