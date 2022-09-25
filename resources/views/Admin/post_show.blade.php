@@ -52,13 +52,13 @@
                                                 @endif
                                             </td>
                                             <td class="pt_10 pb_10">
-                                                @if ($row->admin_id != 0)
+                                               {{-- @if ($row->admin_id != 0) --}}
                                                     <a href="{{ route('admin_post_edit', $row->id) }}"
                                                         class="btn btn-primary">Edit</a>
                                                     <a href="{{ route('admin_post_delete', $row->id) }}"
                                                         class="btn btn-danger"
                                                         onClick="return confirm('Are you sure?');">Delete</a>
-                                                @endif
+                                                {{-- @endif --}}
                                             </td>
 
                                         </tr>

@@ -13,42 +13,43 @@ class AuthorProfileController extends Controller
 {
     public function author_edit_profile()
     {
-         return view('Author.profile');
+        return view('Author.profile');
     }
 
     public function author_profile_submit(Request $request)
     {
-      
+
         $author_data = Author::where('email', Auth::guard('author')->user()->email)->first();
 
-         $request->validate([
+        $request->validate([
             'name' => 'required',
             'email' => [
                 'required',
                 'email',
                 Rule::unique('authors')->ignore($author_data->id)
             ]
-           
-         ]);
 
-         if($request->password !=''){
+        ]);
+
+        if ($request->password != '') {
             $request->validate([
                 'password' => 'required',
                 'retype_password' => 'required|same:password'
             ]);
 
             $author_data->password = Hash::make($request->password);
+        }
 
-         }
 
-         
         if ($request->hasFile('photo')) {
 
             $request->validate([
                 'photo' => 'image|mimes:jpg,jpeg,png,gif'
             ]);
 
-            unlink(public_path('uploads/' . $author_data->photo));
+            if ($author_data->photo != NULL) {
+                unlink(public_path('uploads/' . $author_data->photo));
+            }
 
             $now = time();
             $ext = $request->file('photo')->extension();
@@ -65,6 +66,5 @@ class AuthorProfileController extends Controller
 
 
         return redirect()->route('author_home')->with('success', 'Information Is Updated Successfully.');
-
     }
 }

@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    @include('Author.Layout.scripts_footer')
+    @include('Admin.Layout.scripts_footer')
 
     {{-- izitoast flash message --}}
 

@@ -106,10 +106,10 @@ class AdminPostController extends Controller
     public function post_edit($id)
     {
 
-        $test = Post::where('id', $id)->where('admin_id', Auth::guard('admin')->user()->id)->count();
-        if(!$test){
-            return redirect()->route('admin_home');
-        }
+        // $test = Post::where('id', $id)->where('admin_id', Auth::guard('admin')->user()->id)->count();
+        // if(!$test){
+        //     return redirect()->route('admin_home');
+        // }
 
 
         $sub_categories = SubCategory::with('rCategory')->get();
@@ -186,10 +186,10 @@ class AdminPostController extends Controller
 
     public function post_delete($id)
     {
-        $test = Post::where('id', $id)->where('admin_id', Auth::guard('admin')->user()->id)->count();
-        if(!$test){
-            return redirect()->route('admin_home');
-        }
+        // $test = Post::where('id', $id)->where('admin_id', Auth::guard('admin')->user()->id)->count();
+        // if(!$test){
+        //     return redirect()->route('admin_home');
+        // }
         
         $post = Post::where('id', $id)->first();
         unlink(public_path('uploads/' . $post->post_photo));

@@ -19,13 +19,13 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
-                                        @if (Auth::guard('author')->user()->photo != null)
+                                        {{-- @if (Auth::guard('author')->user()->photo != null) --}}
                                             <div class="col-md-3">
                                                 <img src="{{ asset('uploads/' . Auth::guard('author')->user()->photo) }}"
                                                     alt="" class="profile-photo w_100_p">
                                                 <input type="file" class="form-control mt_10" name="photo">
                                             </div>
-                                        @endif
+                                        {{-- @endif --}}
 
                                         <div class="col-md-9">
                                             <div class="mb-4">

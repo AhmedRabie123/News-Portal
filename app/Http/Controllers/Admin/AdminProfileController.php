@@ -9,74 +9,70 @@ use App\Models\Admin;
 use Hash;
 use Auth;
 use Illuminate\Support\Facades\Hash as FacadesHash;
+use phpDocumentor\Reflection\Types\Null_;
 
 class AdminProfileController extends Controller
 {
-   public function edit_profile()
-   {
-      return view('Admin.profile');
-   }
+  public function edit_profile()
+  {
+    return view('Admin.profile');
+  }
 
-   public function admin_profile_submit(Request $request)
-   {
-    
-     $admin_data = Admin::where('email',Auth::guard('admin')->user()->email)->first();
+  public function admin_profile_submit(Request $request)
+  {
 
-        //dd($admin_data);
+    $admin_data = Admin::where('email', Auth::guard('admin')->user()->email)->first();
 
-       $request->validate([
-  
-         'name' => 'required',
-         'email' => 'required|email'
+    //dd($admin_data);
 
-       ]);
+    $request->validate([
 
-       //dd($request->name);
-      //  dd($request->email);
+      'name' => 'required',
+      'email' => 'required|email'
 
-       if($request->password!=''){
+    ]);
 
-         $request->validate([
-  
-            'password' => 'required|',
-            'retype_password' => 'required|same:password'
-   
-          ]);
+    //dd($request->name);
+    //  dd($request->email);
 
-          $admin_data->password = Hash::make($request->password);
+    if ($request->password != '') {
 
-         //  dd($request->password);
+      $request->validate([
 
-       }
+        'password' => 'required|',
+        'retype_password' => 'required|same:password'
 
-       if($request->hasFile('photo')){
+      ]);
 
-         $request->validate([
-  
-            'photo' => 'image|mimes:jpg,jpeg,png,gif'
-   
-          ]);
+      $admin_data->password = Hash::make($request->password);
 
-          unlink(public_path('uploads/'.$admin_data->photo));
+      //  dd($request->password);
 
-          $ext = $request->file('photo')->extension();
-          $final_name = 'admin'.'.'.$ext;
-          $request->file('photo')->move(public_path('uploads/'),$final_name);
+    }
 
-          $admin_data->photo = $final_name;
+    if ($request->hasFile('photo')) {
 
+      $request->validate([
 
-       }
+        'photo' => 'image|mimes:jpg,jpeg,png,gif'
 
-       $admin_data->name = $request->name;
-       $admin_data->email = $request->email;
-       $admin_data->update();
+      ]);
 
-       return redirect()->back()->with('success', 'profile information updated successfully.');
- 
-       
-   }
+      if ($admin_data->photo != Null) {
+        unlink(public_path('uploads/' . $admin_data->photo));
+      }
 
+      $ext = $request->file('photo')->extension();
+      $final_name = 'admin' . '.' . $ext;
+      $request->file('photo')->move(public_path('uploads/'), $final_name);
 
+      $admin_data->photo = $final_name;
+    }
 
+    $admin_data->name = $request->name;
+    $admin_data->email = $request->email;
+    $admin_data->update();
+
+    return redirect()->back()->with('success', 'profile information updated successfully.');
+  }
 }
