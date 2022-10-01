@@ -58,9 +58,13 @@ class AdminProfileController extends Controller
 
       ]);
 
-      if ($admin_data->photo != Null) {
+      if (file_exists(public_path('uploads/' . $admin_data->photo)) && $admin_data->photo != NULL) {
         unlink(public_path('uploads/' . $admin_data->photo));
       }
+
+      // if ($admin_data->photo != Null) {
+      //   unlink(public_path('uploads/' . $admin_data->photo));
+      // }
 
       $ext = $request->file('photo')->extension();
       $final_name = 'admin' . '.' . $ext;

@@ -47,9 +47,15 @@ class AuthorProfileController extends Controller
                 'photo' => 'image|mimes:jpg,jpeg,png,gif'
             ]);
 
-            if ($author_data->photo != NULL) {
+
+            if (file_exists(public_path('uploads/' . $author_data->photo)) && $author_data->photo != NULL) {
                 unlink(public_path('uploads/' . $author_data->photo));
             }
+
+            // if ($author_data->photo != NULL) {
+            //     unlink(public_path('uploads/' . $author_data->photo));
+            // }
+
 
             $now = time();
             $ext = $request->file('photo')->extension();

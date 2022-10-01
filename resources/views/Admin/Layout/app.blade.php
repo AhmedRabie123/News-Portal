@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
 
-    <link rel="icon" type="image/png" href="{{ asset('uploads/' .$setting_data->favicon) }}">
+    <link rel="icon" type="image/png" href="{{ asset('uploads/' .$global_setting_data->favicon) }}">
 
     <title>Admin Panel</title>
 

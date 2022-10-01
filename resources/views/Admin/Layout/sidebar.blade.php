@@ -17,9 +17,9 @@
                     href="{{ route('admin_setting') }}"><i class="fas fa-hand-point-right"></i>
                     <span>Setting</span></a></li>
 
-                    <li class="{{ Request::is('admin/author/*') ? 'active' : '' }}"><a class="nav-link"
-                        href="{{ route('admin_author_show') }}"><i class="fas fa-hand-point-right"></i>
-                        <span> Author List</span></a></li>
+            <li class="{{ Request::is('admin/author/*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('admin_author_show') }}"><i class="fas fa-hand-point-right"></i>
+                    <span> Author List</span></a></li>
 
             <li
                 class="nav-item dropdown {{ Request::is('admin/top-advertisement') || Request::is('admin/home-advertisement') || Request::is('admin/sidebar-advertisement-*') ? 'active' : '' }} ">
@@ -99,6 +99,10 @@
             <li class="{{ Request::is('admin/faq*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_faq_show') }}"><i class="fas fa-hand-point-right"></i>
                     <span>FAQ Section</span></a></li>
+
+            <li class="{{ Request::is('admin/language*') ? 'active' : '' }}"><a class="nav-link"
+                    href="{{ route('admin_language_show') }}"><i class="fas fa-hand-point-right"></i>
+                    <span>Languages</span></a></li>
 
             <li class="nav-item dropdown {{ Request::is('admin/subscriber/*') ? 'active' : '' }} ">
                 <a href="#" class="nav-link has-dropdown"><i

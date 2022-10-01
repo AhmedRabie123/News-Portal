@@ -76,9 +76,7 @@
                     
                     @if ($post_detail->is_comment == 1)
                       {!! $global_setting_data->disqus_code !!}
-                    @endif
-
-                    {{-- <div class="comment-fb">
+                         {{-- <div class="comment-fb">
                         <h2>Comment</h2>
                         <div id="disqus_thread"></div>
                         <script>
@@ -91,6 +89,9 @@
                             })();
                         </script>
                     </div> --}}
+                    @endif
+
+                 
 
                     <div class="related-news">
                         <div class="related-news-heading">
