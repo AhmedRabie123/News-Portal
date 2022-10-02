@@ -17,7 +17,7 @@
 
     <div class="widget">
         <div class="tag-heading">
-            <h2>Tags</h2>
+            <h2>{{ TAGS }}</h2>
         </div>
         <div class="tag">
             @php
@@ -41,7 +41,7 @@
 
     <div class="widget">
         <div class="archive-heading">
-            <h2>Archive</h2>
+            <h2>{{ ARCHIVE }}</h2>
         </div>
         <div class="archive">
 
@@ -62,7 +62,7 @@
             <form action="{{ route('archive_show') }}" method="post">
                 @csrf
                 <select name="archive_month_year" class="form-select" onChange="this.form.submit()">
-                    <option value="">Select Month</option>
+                    <option value="">{{ SELECT_MONTH }}</option>
                     @for ($i = 0; $i < count($archive_array); $i++)
                         {
 
@@ -104,19 +104,19 @@
 <div class="widget">
     <div class="news">
         <div class="news-heading">
-            <h2>Popular & Recent News</h2>
+            <h2>{{ POPULAR_RECENT_NEWS }}</h2>
         </div>
 
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                    aria-selected="true">Recent News</button>
+                    aria-selected="true">{{ RECENT_NEWS }}</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                    aria-selected="false">Popular News</button>
+                    aria-selected="false">{{ POPULAR_NEWS }}</button>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -201,7 +201,7 @@
 
 <div class="widget">
 <div class="poll-heading">
-<h2>Online Poll</h2>
+<h2>{{ ONLINE_POLL }}</h2>
 </div>
 <div class="poll">
 <div class="question">
@@ -232,7 +232,7 @@ if ($global_online_poll_data->no_vote == 0) {
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tr>
-                    <td style="width:100px;">Yes ({{ $global_online_poll_data->yes_vote }})</td>
+                    <td style="width:100px;">{{ YES }} ({{ $global_online_poll_data->yes_vote }})</td>
                     <td>
                         <div class="progress">
                             <div class="progress-bar bg-success" role="progressbar"
@@ -243,7 +243,7 @@ if ($global_online_poll_data->no_vote == 0) {
                     </td>
                 </tr>
                 <tr>
-                    <td>No ({{ $global_online_poll_data->no_vote }})</td>
+                    <td>{{ NO }} ({{ $global_online_poll_data->no_vote }})</td>
                     <td>
                         <div class="progress">
                             <div class="progress-bar bg-danger" role="progressbar"
@@ -255,8 +255,7 @@ if ($global_online_poll_data->no_vote == 0) {
                 </tr>
             </table>
         </div>
-        <a href="{{ route('poll_previous') }}" class="btn btn-primary old" style="margin-top:0;">Old
-            Results</a>
+        <a href="{{ route('poll_previous') }}" class="btn btn-primary old" style="margin-top:0;">{{ OLD_RESULTS }}</a>
     </div>
 @endif
 
@@ -268,16 +267,16 @@ if ($global_online_poll_data->no_vote == 0) {
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="vote" id="poll_id_1"
                     value="Yes">
-                <label class="form-check-label" for="poll_id_1">Yes</label>
+                <label class="form-check-label" for="poll_id_1">{{ YES }}</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="vote" id="poll_id_2"
                     value="No">
-                <label class="form-check-label" for="poll_id_2">No</label>
+                <label class="form-check-label" for="poll_id_2">{{ NO }}</label>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="{{ route('poll_previous') }}" class="btn btn-primary old">Old Results</a>
+                <button type="submit" class="btn btn-primary">{{ SUBMIT }}</button>
+                <a href="{{ route('poll_previous') }}" class="btn btn-primary old">{{ OLD_RESULTS }}</a>
             </div>
         </form>
     </div>

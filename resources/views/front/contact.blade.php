@@ -11,7 +11,7 @@
                     <h2>{{ $page_data->contact_title }}</h2>
                     <nav class="breadcrumb-container">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ HOME }}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $page_data->contact_title }}</li>
                         </ol>
                     </nav>
@@ -32,24 +32,24 @@
                         @csrf
                         <div class="contact-form">
                             <div class="mb-3">
-                                <label for="" class="form-label">Name</label>
+                                <label for="" class="form-label">{{ NAME }}</label>
                                 <input type="text" name="name" class="form-control">
                                 <span class="text-danger error-text name_error"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Email Address</label>
+                                <label for="" class="form-label">{{ EMAIL_ADDRESS }}</label>
                                 <input type="text" name="email" class="form-control">
                                 <span class="text-danger error-text email_error"></span>
 
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Message</label>
+                                <label for="" class="form-label">{{ MESSAGE }}</label>
                                 <textarea class="form-control" name="message" rows="3"></textarea>
                                 <span class="text-danger error-text message_error"></span>
 
                             </div>
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary bg-website">Send Message</button>
+                                <button type="submit" class="btn btn-primary bg-website">{{ SEND_MESSAGE }}</button>
                             </div>
                         </div>
                     </form>

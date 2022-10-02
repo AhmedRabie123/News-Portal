@@ -18,7 +18,7 @@
                         <form action="{{ route('admin_language_update_detail_submit', $lang_id) }}" method="post">
                             @csrf
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="example1">
+                                <table class="table table-bordered" id="">
                                     <thead>
                                         <tr>
                                             <th style="width: 40px;">SL</th>
@@ -31,15 +31,13 @@
                                         @foreach ($json_data as $key => $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-
                                                 <td>{{ $key }}</td>
                                                 <td>
-                                                    <input type="hidden" name="arr_key[]" value="{{ $key }}"
-                                                        class="form_control">
-                                                    <input type="text" name="arr_value[]" value="{{ $value }}"
-                                                        class="form_control">
+                                                    <input type="hidden" name="arr_key[]" class="form-control"
+                                                        value="{{ $key }}">
+                                                    <input type="text" name="arr_value[]" class="form-control"
+                                                        value="{{ $value }}">
                                                 </td>
-
                                             </tr>
                                         @endforeach
 

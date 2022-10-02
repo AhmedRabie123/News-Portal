@@ -8,11 +8,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>All Post Of: {{ $updated_date }}</h2>
+                    <h2>{{ ALL_POSTS_OF }}: {{ $updated_date }}</h2>
                     <nav class="breadcrumb-container">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item">Archive</li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ HOME }}</a></li>
+                            <li class="breadcrumb-item">{{ ARCHIVE }}</li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $updated_date }}
                             </li>
                         </ol>
@@ -64,7 +64,7 @@
                                     </div>
                                 @endforeach
                             @else
-                                <span class="text-danger">No Posts is found</span>
+                                <span class="text-danger">{{ NO_POSTS_FOUND }}</span>
                             @endif
 
                             <div class="col-md-12">

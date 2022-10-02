@@ -10,21 +10,20 @@
         <ul class="sidebar-menu">
 
             <li class="{{ Request::is('admin/home') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_home') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_home') }}"><i class="fas fa-home"></i>
                     <span>Dashboard</span></a></li>
 
             <li class="{{ Request::is('admin/setting') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_setting') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_setting') }}"><i class="fas fa-cog"></i>
                     <span>Setting</span></a></li>
 
             <li class="{{ Request::is('admin/author/*') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_author_show') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_author_show') }}"><i class="fas fa-user-edit"></i>
                     <span> Author List</span></a></li>
 
             <li
                 class="nav-item dropdown {{ Request::is('admin/top-advertisement') || Request::is('admin/home-advertisement') || Request::is('admin/sidebar-advertisement-*') ? 'active' : '' }} ">
-                <a href="#" class="nav-link has-dropdown"><i
-                        class="fas fa-hand-point-right"></i><span>Advertisements</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-ad"></i><span>Advertisements</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/top-advertisement') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('admin_top_ad_show') }}"><i class="fas fa-angle-right"></i> Top
@@ -41,8 +40,7 @@
 
             <li
                 class="nav-item dropdown {{ Request::is('admin/category-*') || Request::is('admin/sub-category-*') || Request::is('admin/post-*') ? 'active' : '' }} ">
-                <a href="#" class="nav-link has-dropdown"><i
-                        class="fas fa-hand-point-right"></i><span>News</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-newspaper"></i><span>News</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/category-*') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('admin_category_show') }}"><i class="fas fa-angle-right"></i> Categories
@@ -59,16 +57,16 @@
             </li>
 
             <li class="{{ Request::is('admin/photo/*') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_photo_show') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_photo_show') }}"><i class="fas fa-camera"></i>
                     <span>Photo Gallery</span></a></li>
 
             <li class="{{ Request::is('admin/video/*') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_video_show') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_video_show') }}"><i class="fas fa-video"></i>
                     <span>Video Gallery</span></a></li>
 
             <li class="nav-item dropdown {{ Request::is('admin/page/*') ? 'active' : '' }} ">
                 <a href="#" class="nav-link has-dropdown"><i
-                        class="fas fa-hand-point-right"></i><span>Pages</span></a>
+                        class="fas fa-copy"></i><span>Pages</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/page/about') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('admin_page_about') }}"><i class="fas fa-angle-right"></i>About Page
@@ -97,16 +95,16 @@
             </li>
 
             <li class="{{ Request::is('admin/faq*') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_faq_show') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_faq_show') }}"><i class="fas fa-question-circle"></i>
                     <span>FAQ Section</span></a></li>
 
             <li class="{{ Request::is('admin/language*') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_language_show') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_language_show') }}"><i class="fas fa-language"></i>
                     <span>Languages</span></a></li>
 
             <li class="nav-item dropdown {{ Request::is('admin/subscriber/*') ? 'active' : '' }} ">
                 <a href="#" class="nav-link has-dropdown"><i
-                        class="fas fa-hand-point-right"></i><span>Subscriber</span></a>
+                        class="fas fa-users"></i><span>Subscriber</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/subscriber/show*') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('admin_subscribers') }}"><i class="fas fa-angle-right"></i> All
@@ -120,15 +118,15 @@
             </li>
 
             <li class="{{ Request::is('admin/live-channel*') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_live_channel_show') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_live_channel_show') }}"><i class="far fa-stop-circle"></i>
                     <span>Live Channel</span></a></li>
 
             <li class="{{ Request::is('admin/online-poll/*') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_online_poll_show') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_online_poll_show') }}"><i class="fas fa-vote-yea"></i>
                     <span>Online Polls</span></a></li>
 
             <li class="{{ Request::is('admin/social-item/*') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_social_item_show') }}"><i class="fas fa-hand-point-right"></i>
+                    href="{{ route('admin_social_item_show') }}"><i class="fas fa-share-alt"></i>
                     <span>Social Item</span></a></li>
 
 

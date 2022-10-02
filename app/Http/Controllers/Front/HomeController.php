@@ -32,8 +32,10 @@ class HomeController extends Controller
 
    public function get_subcategory_by_category($id)
    {
+       Helpers::read_json();
+
        $sub_category_data = SubCategory::where('category_id', $id)->get();
-       $response = "<option value=''>Select SubCategory</option>";
+       $response = "<option value=''>".SELECT_SUBCATEGORY."</option>";
 
        foreach($sub_category_data as $item ){
         $response .= '<option value="'.$item->id.'">'.$item->sub_category_name.'</option>';

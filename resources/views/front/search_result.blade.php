@@ -8,11 +8,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Search Result</h2>
+                    <h2>{{ SEARCH_RESULT }}</h2>
                     <nav class="breadcrumb-container">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Search Result</li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ HOME }}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ SEARCH_RESULT }}</li>
 
                         </ol>
                     </nav>
@@ -63,7 +63,7 @@
                                     </div>
                                 @endforeach
                             @else
-                                <span class="text-danger">No Posts is found</span>
+                                <span class="text-danger">{{ NO_POSTS_FOUND }}</span>
                             @endif
 
                             <div class="col-md-12">
