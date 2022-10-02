@@ -20,6 +20,7 @@ use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\OnlinePollController;
 use App\Http\Controllers\Front\ArchiveController;
 use App\Http\Controllers\Front\TagController;
+use App\Http\Controllers\Front\LanguageController;
 
 
 // Author Controller Route
@@ -69,6 +70,9 @@ use App\Http\Controllers\Admin\AdminLanguageController;
 
 // Home Page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// language result
+Route::post('/language/switch', [LanguageController::class, 'switch_language'])->name('front_language');
 
 // search section Get Subcategory By Category
 Route::get('/subcategory-by-category/{id}', [HomeController::class, 'get_subcategory_by_category'])->name('subcategory_by_category');
@@ -335,9 +339,10 @@ Route::get('/admin/language-edit/{id}',[AdminLanguageController::class, 'languag
 Route::post('/admin/language-update/{id}',[AdminLanguageController::class, 'language_update'])->name('admin_language_update')->middleware('admin:admin');
 Route::get('/admin/language-delete/{id}',[AdminLanguageController::class, 'language_delete'])->name('admin_language_delete')->middleware('admin:admin');
 
+// Language update detail Section
 
-
-
+Route::get('/admin/language/update/detail/{id}',[AdminLanguageController::class, 'update_detail'])->name('admin_language_update_detail')->middleware('admin:admin');
+Route::post('/admin/language/update/detail-submit{id}',[AdminLanguageController::class, 'update_detail_submit'])->name('admin_language_update_detail_submit')->middleware('admin:admin');
 
 
 

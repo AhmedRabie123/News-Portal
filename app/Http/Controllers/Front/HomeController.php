@@ -11,11 +11,14 @@ use App\Models\Admin;
 use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Video;
+use App\Helper\Helpers;
 
 class HomeController extends Controller
 {
    public function index()
    {
+ 
+       Helpers::read_json();
 
        $home_ad_data = HomeAdvertisement::where('id', 1)->first();
        $setting_data = Setting::where('id', 1)->first();

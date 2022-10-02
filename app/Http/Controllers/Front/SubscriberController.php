@@ -1,19 +1,21 @@
 <?php
 
 namespace App\Http\Controllers\Front;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\WebsiteMail;
 use App\Models\Subscriber;
+// use App\Helper\Helpers;
 use Hash;
-use Illuminate\Support\Facades\Redirect;
 
 class SubscriberController extends Controller
 {
     public function index(Request $request)
     {
-       
+        // Helpers::read_json();
+
         $validator = \Validator::make($request->all(),[
             
             'email' => 'required|email'

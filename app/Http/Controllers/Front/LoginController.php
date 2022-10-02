@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Mail\WebsiteMail;
 use App\Models\Page;
 use App\Models\Author;
+use App\Helper\Helpers;
 use Hash;
 use Auth;
 
@@ -15,6 +16,8 @@ class LoginController extends Controller
 {
     public function index()
     {
+        Helpers::read_json();
+
         $page_data = Page::where('id', 1)->first();
         return view('Front.login', compact('page_data'));
     }
@@ -47,6 +50,8 @@ class LoginController extends Controller
 
     public function author_forget_password()
     {
+        Helpers::read_json();
+
         return view('Front.forget_password');
     }
 
@@ -81,6 +86,8 @@ class LoginController extends Controller
 
     public function author_reset_password($token, $email)
     {
+        Helpers::read_json();
+        
         // dd($token);
         $author_reset = Author::where('token', $token)->where('email', $email)->first();
         if (!$author_reset) {

@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="acme-news-ticker">
-                            <div class="acme-news-ticker-label">Latest News</div>
+                            <div class="acme-news-ticker-label">{{ LATEST_NEWS }}</div>
                             <div class="acme-news-ticker-box">
                                 <ul class="my-news-ticker">
                                     @php $i=0; @endphp

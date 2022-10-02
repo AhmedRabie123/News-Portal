@@ -1,3 +1,22 @@
+@if (!session()->get('session_short_name'))
+    @php
+        $current_short_name = $global_short_name;
+    @endphp
+@else
+    @php
+        $current_short_name = session()->get('session_short_name');
+    @endphp
+@endif
+
+{{-- @php
+    $json_data = json_decode(file_get_contents(resource_path('languages/'.$current_short_name.'.json')));
+
+    foreach ($json_data as $key => $value) {
+        define($key,$value);
+    }
+@endphp --}}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,7 +133,7 @@
                     <ul>
 
                         @if ($global_setting_data->top_bar_date_status == 'Show')
-                            <li class="today-text">Today: {{ date('F d,Y') }}</li>
+                            <li class="today-text">{{ TODAY }}: {{ date('F d,Y') }}</li>
                         @endif
                         @if ($global_setting_data->top_bar_email_status == 'Show')
                             <li class="email-text">{{ $global_setting_data->top_bar_email }}</li>
@@ -125,7 +144,8 @@
                 <div class="col-md-6">
                     <ul class="right">
                         @if ($global_page_data->faq_status == 'Show')
-                            <li class="menu"><a href="{{ route('faq') }}">{{ $global_page_data->faq_title }}</a></li>
+                            <li class="menu"><a href="{{ route('faq') }}">{{ $global_page_data->faq_title }}</a>
+                            </li>
                         @endif
 
                         @if ($global_page_data->about_status == 'Show')
@@ -146,11 +166,14 @@
 
                         <li>
                             <div class="language-switch">
-                                <select name="">
-                                    <option value="">English</option>
-                                    <option value="">Hindi</option>
-                                    <option value="">Arabic</option>
-                                </select>
+                                <form action="{{ route('front_language') }}" method="post">
+                                    @csrf
+                                    <select name="short_name" onchange="this.form.submit()">
+                                        @foreach ($global_language_data as $item)
+                                            <option value="{{ $item->short_name }}" @if ($item->short_name == $current_short_name) selected @endif>{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
                             </div>
                         </li>
                     </ul>

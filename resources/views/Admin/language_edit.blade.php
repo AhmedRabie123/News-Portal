@@ -26,11 +26,11 @@
                                     name="name">
                             </div>
 
-                            <div class="form-group mb-3">
+                            {{-- <div class="form-group mb-3">
                                 <label>language Short Name*</label>
                                 <input type="text" class="form-control" value="{!! $language_single->short_name !!}"
                                     name="short_name">
-                            </div>
+                            </div> --}}
 
                             <div class="form-group mb-3">
                                 <label>Is Default?</label>

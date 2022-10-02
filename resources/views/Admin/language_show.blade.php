@@ -37,7 +37,7 @@
                                             <td>{!! $row->short_name !!}</td>
                                             <td>{{ $row->is_default }}</td>
                                             <td>
-                                                <a href="" class="btn btn-success">Update Detail</a>
+                                                <a href="{{ route('admin_language_update_detail',$row->id) }}" class="btn btn-success">Update Detail</a>
                                             </td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_language_edit', $row->id) }}"

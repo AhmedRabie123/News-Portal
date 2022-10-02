@@ -13,6 +13,7 @@ use App\Models\Post;
 use App\Models\OnlinePoll;
 use App\Models\Setting;
 use App\Models\SocialItem;
+use App\Models\Language;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -79,5 +80,13 @@ class AppServiceProvider extends ServiceProvider
         // Settings data
         $setting_data = Setting::where('id', 1)->first();
         view()->share('global_setting_data', $setting_data);
+
+        // language data
+        $language_data = Language::get();
+        view()->share('global_language_data', $language_data);
+
+        // language is_default
+        $default_lang_data = Language::where('is_default', 'Yes')->first();
+        view()->share('global_short_name', $default_lang_data->short_name);
     }
 }

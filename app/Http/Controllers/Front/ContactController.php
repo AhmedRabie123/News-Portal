@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 use App\Mail\WebsiteMail;
 use App\Models\Page;
 use App\Models\Admin;
+use App\Helper\Helpers;
+
 
 
 class ContactController extends Controller
 {
     public function index()
     {
+        Helpers::read_json();
+        
         $page_data = Page::where('id', 1)->first();
         return view('Front.contact', compact('page_data'));
  
