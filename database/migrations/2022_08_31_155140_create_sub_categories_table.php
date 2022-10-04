@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('sub_category_order');
             //$table->integer('category_id');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->integer('language_id');
             $table->timestamps();
         });
     }

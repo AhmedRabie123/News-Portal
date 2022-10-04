@@ -23,6 +23,7 @@
                                         <th>Category Name</th>
                                         <th>Show On Menu</th>
                                         <th>Category Order</th>
+                                        <th>Language ID</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -34,6 +35,7 @@
                                             <td>{{ $row->category_name }}</td>
                                             <td>{{ $row->show_on_menu }}</td>
                                             <td>{{ $row->category_order }}</td>
+                                            <td>{{ $row->rLanguage->name }}</td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_category_edit', $row->id) }}"
                                                     class="btn btn-primary">Edit</a>

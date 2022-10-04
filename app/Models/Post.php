@@ -13,4 +13,9 @@ class Post extends Model
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
+
+    public function rLanguage()
+    {
+        return $this->belongsTo(Language::class, 'language_id');
+    }
 }

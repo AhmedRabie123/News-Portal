@@ -1,3 +1,20 @@
+@if (!session()->get('session_short_name'))
+    @php
+        $current_short_name = $global_short_name;
+    @endphp
+@else
+    @php
+        $current_short_name = session()->get('session_short_name');
+    @endphp
+@endif
+
+@php
+$current_language_id = \App\Models\Language::where('short_name', $current_short_name)->first()->id;
+@endphp
+
+
+
+
 <div class="sidebar">
 
     <div class="widget">
@@ -31,6 +48,27 @@
             @endphp
 
             @foreach ($all_tags as $item)
+                @php
+                    $count = 0;
+                    $all_tag_posts = \App\Models\Tag::where('tag_name', $item->tag_name)->get();
+                   // $all_post_ids = [];
+                    foreach ($all_tag_posts as $row) {
+                        //    echo $row->post_id;
+                        //    echo '<br>';
+                        //$all_post_ids[] = $row->post_id;
+                        $temp = \App\Models\Post::where('id', $row->post_id)->where('language_id', $current_language_id)->count();
+
+                       if($temp > 0){
+                          $count=1;
+                          break;
+                       }
+                    }
+ 
+                    if($count == 0){
+                        continue;
+                    }
+                    
+                @endphp
                 <div class="tag-item">
                     <a href="{{ route('tag_post_show', $item->tag_name) }}"><span
                             class="badge bg-secondary">{{ $item->tag_name }}</span></a>
@@ -69,7 +107,8 @@
                         @php
                             $temp_arr = explode('-', $archive_array[$i]);
                         @endphp
-                        <option value="{{ $temp_arr[0] . '-' . $temp_arr[2] }}">{{ $temp_arr[1] }}, {{ $temp_arr[2] }}
+                        <option value="{{ $temp_arr[0] . '-' . $temp_arr[2] }}">{{ $temp_arr[1] }},
+                            {{ $temp_arr[2] }}
                         </option>
 
                         }
@@ -141,7 +180,7 @@
                                 @if ($item->author_id == 0)
                                     @php  $user_data = \App\Models\Admin::where('id', $item->admin_id)->first();    @endphp
                                 @else
-                                @php  $user_data = \App\Models\Author::where('id', $item->author_id)->first();    @endphp
+                                    @php  $user_data = \App\Models\Author::where('id', $item->author_id)->first();    @endphp
                                 @endif
                                 <a href="javascript:void;">{{ $user_data->name }}</a>
                             </div>
@@ -232,7 +271,8 @@ if ($global_online_poll_data->no_vote == 0) {
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tr>
-                    <td style="width:100px;">{{ YES }} ({{ $global_online_poll_data->yes_vote }})</td>
+                    <td style="width:100px;">{{ YES }}
+                        ({{ $global_online_poll_data->yes_vote }})</td>
                     <td>
                         <div class="progress">
                             <div class="progress-bar bg-success" role="progressbar"
@@ -255,7 +295,8 @@ if ($global_online_poll_data->no_vote == 0) {
                 </tr>
             </table>
         </div>
-        <a href="{{ route('poll_previous') }}" class="btn btn-primary old" style="margin-top:0;">{{ OLD_RESULTS }}</a>
+        <a href="{{ route('poll_previous') }}" class="btn btn-primary old"
+            style="margin-top:0;">{{ OLD_RESULTS }}</a>
     </div>
 @endif
 
@@ -276,7 +317,8 @@ if ($global_online_poll_data->no_vote == 0) {
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">{{ SUBMIT }}</button>
-                <a href="{{ route('poll_previous') }}" class="btn btn-primary old">{{ OLD_RESULTS }}</a>
+                <a href="{{ route('poll_previous') }}"
+                    class="btn btn-primary old">{{ OLD_RESULTS }}</a>
             </div>
         </form>
     </div>

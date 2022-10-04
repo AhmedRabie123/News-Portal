@@ -25,6 +25,7 @@
                                         <th>Show On Menu</th>
                                         <th>Show On Home</th>
                                         <th>Sub Category Order</th>
+                                        <th>Language ID</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -40,6 +41,7 @@
                                             <td>{{ $row->show_on_menu }}</td>
                                             <td>{{ $row->show_on_home }}</td>
                                             <td>{{ $row->sub_category_order }}</td>
+                                            <td>{{ $row->rLanguage->name }}</td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_sub_category_edit', $row->id) }}"
                                                     class="btn btn-primary">Edit</a>
