@@ -20,48 +20,51 @@ class ContactController extends Controller
 
         if (!session()->get('session_short_name')) {
             $current_short_name = Language::where('is_default', 'Yes')->first()->short_name;
-         } else {
+        } else {
             $current_short_name = session()->get('session_short_name');
-         }
-   
-         $current_language_id = Language::where('short_name', $current_short_name)->first()->id;
-        
+        }
+
+        $current_language_id = Language::where('short_name', $current_short_name)->first()->id;
+
         $page_data = Page::where('language_id', $current_language_id)->first();
         return view('Front.contact', compact('page_data'));
- 
     }
 
     public function send_email(Request $request)
     {
-        
-        $validator = \Validator::make($request->all(),[
+        Helpers::read_json();
+
+        $validator = \Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
             'message' => 'required'
+        ], [
+            'name.required' => ERROR_NAME_REQUIRED,
+            'email.required' => ERROR_EMAIL_REQUIRED,
+            'email.email' => ERROR_EMAIL_VALID,
+            'message.required' => ERROR_MESSAGE_REQUIRED
         ]);
 
-       
 
-        if(!$validator->passes()){
 
-            return response()->json(['code'=>0, 'error_message'=>$validator->errors()->toArray() ]);
+        if (!$validator->passes()) {
 
-        } else{
-            
-            
+            return response()->json(['code' => 0, 'error_message' => $validator->errors()->toArray()]);
+        } else {
+
+
             //send email
-             $admin_data = Admin::where('id', 1)->first();
-            
-             $subject = 'Contact From Email';
-             $message = 'Visitor Message Detail: <br>';
-             $message .= '<b> Visitor Name:</b>'. $request->name .'<br>';
-             $message .= '<b>Visitor Email:</b>' .$request->email .'<br>';
-             $message .= '<b> Visitor Message:</b>'.$request->message .'<br>';
+            $admin_data = Admin::where('id', 1)->first();
 
-             \Mail::to($admin_data->email)->send(new WebsiteMail($subject, $message));
+            $subject = 'Contact From Email';
+            $message = 'Visitor Message Detail: <br>';
+            $message .= '<b> Visitor Name:</b>' . $request->name . '<br>';
+            $message .= '<b>Visitor Email:</b>' . $request->email . '<br>';
+            $message .= '<b> Visitor Message:</b>' . $request->message . '<br>';
 
-            return response()->json(['code'=>1, 'success_message'=>'Email Is Sent Successfully!']);
+            \Mail::to($admin_data->email)->send(new WebsiteMail($subject, $message));
+
+            return response()->json(['code' => 1, 'success_message' => SUCCESS_CONTACT]);
         }
-
     }
 }

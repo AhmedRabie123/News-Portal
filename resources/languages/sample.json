@@ -54,8 +54,21 @@
     "SEARCH_RESULT": "Search Result",
     "ALL_POST_OF_TAG": "All Post Of Tag",
     "TAG": "Tag",
-    "COMMENT": "Comment"
+    "COMMENT": "Comment",
+    "ERROR_NAME_REQUIRED": "Name Is Required",
+    "ERROR_EMAIL_REQUIRED": "EMAIL Is Required",
+    "ERROR_EMAIL_VALID": "Email MUst Be Valid",
+    "ERROR_MESSAGE_REQUIRED": "Message Is Required",
+    "SUCCESS_CONTACT": "Email Is Sent Successfully We Will Contact You Soon",
+    "SUCCESS_SUBSCRIBER": "Please Check Your Email Address To Verify To Subscriber!",
+    "SUCCESS_SUBSCRIBER_CONFIRM": "Congratulation You Are Successfully a Subscriber In This System",
+    "ERROR_PASSWORD_REQUIRED": "Password Is Required",
+    "ERROR_RETYPE_PASSWORD_REQUIRED": "Retype Password Required",
+    "ERROR_RETYPE_PASSWORD_SAME": "Both Password Must Match",
+    "ERROR_EMAIL_NOT_FOUND": "email address not found",
+    "SUCCESS_FORGET_PASSWORD": "Please Check Your Email And Follow The Steps There",
+    "SUCCESS_RESET_PASSWORD": "password is reset successfully",
+    "ERROR_AUTHOR_LOGIN": "Information Is Not Correct!",
+    "SUCCESS_AUTHOR_LOGOUT": "You Are Logout Successfully"
 
-
-    
 }
