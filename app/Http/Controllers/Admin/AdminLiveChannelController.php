@@ -10,7 +10,7 @@ class AdminLiveChannelController extends Controller
 {
     public function live_channel_show()
     {
-        $live_channels = LiveChannel::orderBy('id','DESC')->get();
+        $live_channels = LiveChannel::with('rLanguage')->orderBy('id','DESC')->get();
         return view('admin.live_channel_show', compact('live_channels'));
     }
 
@@ -30,6 +30,7 @@ class AdminLiveChannelController extends Controller
         $live_channel_data = new LiveChannel();
         $live_channel_data->video_id = $request->video_id;
         $live_channel_data->heading = $request->heading;
+        $live_channel_data->language_id = $request->language_id;
         $live_channel_data->save();
 
         return redirect()->route('admin_live_channel_show')->with('success', 'Live Channel Saved Successfully.');
@@ -53,6 +54,7 @@ class AdminLiveChannelController extends Controller
         $live_channel_data = LiveChannel::where('id', $id)->first();
         $live_channel_data->video_id = $request->video_id;
         $live_channel_data->heading = $request->heading;
+        $live_channel_data->language_id = $request->language_id;
         $live_channel_data->update();
 
         return redirect()->route('admin_live_channel_show')->with('success', 'Live Channel Updated Successfully.');

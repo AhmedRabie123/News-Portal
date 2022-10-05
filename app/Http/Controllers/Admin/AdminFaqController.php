@@ -11,7 +11,7 @@ class AdminFaqController extends Controller
 
   public function faq_show()
   {
-      $faq_data = Faq::get();
+      $faq_data = Faq::with('rLanguage')->get();
       return view('Admin.faq_show', compact('faq_data'));
   }
 
@@ -32,6 +32,7 @@ class AdminFaqController extends Controller
 
     $faq_data->faq_title = $request->faq_title;
     $faq_data->faq_detail = $request->faq_detail;
+    $faq_data->language_id = $request->language_id;
     $faq_data->save();
 
     return redirect()->route('admin_faq_show')->with('success', 'Faq Saved Successfully.');
@@ -57,6 +58,7 @@ class AdminFaqController extends Controller
 
     $faq->faq_title = $request->faq_title;
     $faq->faq_detail = $request->faq_detail;
+    $faq->language_id = $request->language_id;
     $faq->update();
 
     return redirect()->route('admin_faq_show')->with('success', 'Faq Updated Successfully.');

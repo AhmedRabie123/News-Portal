@@ -11,7 +11,7 @@ class AdminPhotoController extends Controller
     public function photo_show()
     {
 
-        $photos = Photo::get();
+        $photos = Photo::with('rLanguage')->get();
         return view('Admin.photo_show', compact('photos'));
     }
 
@@ -38,6 +38,7 @@ class AdminPhotoController extends Controller
 
 
         $photo_data->caption = $request->caption;
+        $photo_data->language_id = $request->language_id;
         $photo_data->save();
 
         return redirect()->route('admin_photo_show')->with('success', 'Photo Saved Successfully.');
@@ -70,6 +71,7 @@ class AdminPhotoController extends Controller
         }
 
         $photos->caption = $request->caption;
+        $photos->language_id = $request->language_id;
         $photos->update();
 
         return redirect()->route('admin_photo_show')->with('success', 'Photo Updated Successfully.');

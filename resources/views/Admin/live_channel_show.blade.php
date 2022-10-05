@@ -22,6 +22,7 @@
                                         <th>SL</th>
                                         <th>Video</th>
                                         <th>Heading</th>
+                                        <th>language</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -38,6 +39,7 @@
                                                     allowfullscreen></iframe>
                                             </td>
                                             <td>{{ $row->heading }}</td>
+                                            <td>{{ $row->rLanguage->name }}</td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_live_channel_edit', $row->id) }}"
                                                     class="btn btn-primary">Edit</a>

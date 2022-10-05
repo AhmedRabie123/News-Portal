@@ -53,25 +53,34 @@ class AppServiceProvider extends ServiceProvider
         $categories = Category::with('rSubCategory')->where('show_on_menu', 'Show')->orderBy('category_order', 'asc')->get();
         view()->share('global_categories',  $categories);
 
+
+        // Live Chanel, I used them inside the sidebar file directly into the PHP because of the language control
+
         // Live Chanel
-        $live_channel_data = LiveChannel::get();
-        view()->share('global_live_channel_data',  $live_channel_data);
+        // $live_channel_data = LiveChannel::get();
+        // view()->share('global_live_channel_data',  $live_channel_data);
+
+        // Recent news and popular news, I used them inside the sidebar file directly into the PHP because of the language control
 
         // Popular News  
-        $popular_news_data = Post::with('rSubCategory')->orderBy('visitors', 'desc')->get();
-        view()->share('global_popular_news_data',  $popular_news_data);
+        // $popular_news_data = Post::with('rSubCategory')->orderBy('visitors', 'desc')->get();
+        // view()->share('global_popular_news_data',  $popular_news_data);
 
         // Recent News  
-        $recent_news_data = Post::with('rSubCategory')->orderBy('id', 'desc')->get();
-        view()->share('global_recent_news_data',  $recent_news_data);
+        // $recent_news_data = Post::with('rSubCategory')->orderBy('id', 'desc')->get();
+        // view()->share('global_recent_news_data',  $recent_news_data);
+
+        // pages, I used them inside the sidebar file directly into the PHP because of the language control
 
         // pages
-        $page_data = Page::where('id', 1)->first();
-        view()->share('global_page_data',  $page_data);
+        // $page_data = Page::where('id', 1)->first();
+        // view()->share('global_page_data',  $page_data);
+
+        // Online Poll, I used them inside the sidebar file directly into the PHP because of the language control
 
         // Online Poll
-        $online_poll_data = OnlinePoll::orderBy('id', 'desc')->first();
-        view()->share('global_online_poll_data', $online_poll_data);
+        // $online_poll_data = OnlinePoll::orderBy('id', 'desc')->first();
+        // view()->share('global_online_poll_data', $online_poll_data);
 
         // Social Item
         $social_item_data = SocialItem::get();

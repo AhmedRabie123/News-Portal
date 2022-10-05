@@ -10,7 +10,7 @@ class AdminOnlinePollController extends Controller
 {
     public function online_poll_show()
     {
-        $online_poll_data = OnlinePoll::orderBy('id','desc')->get();
+        $online_poll_data = OnlinePoll::with('rLanguage')->orderBy('id','desc')->get();
         return view('Admin.online_poll_show',compact('online_poll_data'));
     }
 
@@ -30,6 +30,8 @@ class AdminOnlinePollController extends Controller
         $online_poll_data->question = $request->question;
         $online_poll_data->yes_vote = 0;
         $online_poll_data->no_vote = 0;
+        $online_poll_data->language_id = $request->language_id;
+
         $online_poll_data->save();
 
         return redirect()->route('admin_online_poll_show')->with('success', 'Online Poll Saved Successfully.');
@@ -51,6 +53,7 @@ class AdminOnlinePollController extends Controller
 
         $online_poll_data = OnlinePoll::where('id', $id)->first();
         $online_poll_data->question = $request->question;
+        $online_poll_data->language_id = $request->language_id;
         $online_poll_data->update();
 
         return redirect()->route('admin_online_poll_show')->with('success', 'Online Poll Updated Successfully.');

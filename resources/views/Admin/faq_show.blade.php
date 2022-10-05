@@ -21,6 +21,7 @@
                                     <tr>
                                         <th>SL</th>
                                         <th>FAQ Title</th>
+                                        <th>Language</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -31,6 +32,7 @@
                                             <td>{{ $loop->iteration }}</td>
 
                                             <td>{{ $row->faq_title }}</td>
+                                            <td>{{ $row->rLanguage->name }}</td>
                                             <td class="pt_10 pb_10">
                                                 <a href="{{ route('admin_faq_edit', $row->id) }}"
                                                     class="btn btn-primary">Edit</a>

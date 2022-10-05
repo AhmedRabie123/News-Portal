@@ -11,7 +11,7 @@ class AdminPageController extends Controller
 
     public function admin_about_show()
     {
-        $page_data = Page::where('id', 1)->first();
+        $page_data = Page::with('rLanguage')->get();
         return view('Admin.about_page', compact('page_data'));
     }
 
@@ -23,7 +23,7 @@ class AdminPageController extends Controller
             'about_detail' => 'required|'
         ]);
 
-        $page = Page::where('id', 1)->first();
+        $page = Page::where('id', $request->id)->first();
 
         $page->about_title = $request->about_title;
         $page->about_detail = $request->about_detail;
@@ -36,7 +36,7 @@ class AdminPageController extends Controller
 
     public function admin_faq_show()
     {
-        $page_data = Page::where('id', 1)->first();
+        $page_data = Page::with('rLanguage')->get();
         return view('Admin.faq_page', compact('page_data'));
     }
 
@@ -48,7 +48,7 @@ class AdminPageController extends Controller
             
         ]);
 
-        $page = Page::where('id', 1)->first();
+        $page = Page::where('id', $request->id)->first();
 
         $page->faq_title = $request->faq_title;
         $page->faq_detail = $request->faq_detail;
@@ -61,7 +61,7 @@ class AdminPageController extends Controller
 
     public function admin_terms_show()
     {
-        $page_data = Page::where('id', 1)->first();
+        $page_data = Page::with('rLanguage')->get();
         return view('Admin.terms_page', compact('page_data'));
        
     }
@@ -76,7 +76,7 @@ class AdminPageController extends Controller
         ]);
         
 
-       $page = Page::where('id', 1)->first();
+       $page = Page::where('id', $request->id)->first();
       
         $page->terms_title = $request->terms_title;
         $page->terms_detail = $request->terms_detail;
@@ -90,7 +90,7 @@ class AdminPageController extends Controller
 
     public function admin_Privacy_show()
     {
-        $page_data = Page::where('id', 1)->first();
+        $page_data = Page::with('rLanguage')->get();
         return view('Admin.privacy_page', compact('page_data'));
        
     }
@@ -105,7 +105,7 @@ class AdminPageController extends Controller
         ]);
         
 
-       $page = Page::where('id', 1)->first();
+       $page = Page::where('id', $request->id)->first();
       
         $page->privacy_title = $request->privacy_title;
         $page->privacy_detail = $request->privacy_detail;
@@ -119,7 +119,7 @@ class AdminPageController extends Controller
 
     public function admin_disclaimer_show()
     {
-        $page_data = Page::where('id', 1)->first();
+        $page_data = Page::with('rLanguage')->get();
         return view('Admin.disclaimer_page', compact('page_data'));
        
     }
@@ -134,7 +134,7 @@ class AdminPageController extends Controller
         ]);
         
 
-       $page = Page::where('id', 1)->first();
+       $page = Page::where('id', $request->id)->first();
       
         $page->disclaimer_title = $request->disclaimer_title;
         $page->disclaimer_detail = $request->disclaimer_detail;
@@ -147,7 +147,7 @@ class AdminPageController extends Controller
 
     public function admin_login_show()
     {
-        $page_data = Page::where('id', 1)->first();
+        $page_data = Page::with('rLanguage')->get();
         return view('Admin.login_page', compact('page_data'));
        
     }
@@ -161,7 +161,7 @@ class AdminPageController extends Controller
         ]);
         
 
-       $page = Page::where('id', 1)->first();
+        $page = Page::where('id', $request->id)->first();
       
         $page->login_title = $request->login_title;
         $page->login_status = $request->login_status;
@@ -173,7 +173,7 @@ class AdminPageController extends Controller
 
     public function admin_contact_show()
     {
-        $page_data = Page::where('id', 1)->first();
+        $page_data = Page::with('rLanguage')->get();
         return view('Admin.contact_page', compact('page_data'));
        
     }
@@ -187,7 +187,7 @@ class AdminPageController extends Controller
         ]);
         
 
-       $page = Page::where('id', 1)->first();
+       $page = Page::where('id', $request->id)->first();
 
        //dd($request->contact_detail);
       

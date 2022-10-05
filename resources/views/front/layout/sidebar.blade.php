@@ -51,20 +51,22 @@ $current_language_id = \App\Models\Language::where('short_name', $current_short_
                 @php
                     $count = 0;
                     $all_tag_posts = \App\Models\Tag::where('tag_name', $item->tag_name)->get();
-                   // $all_post_ids = [];
+                    // $all_post_ids = [];
                     foreach ($all_tag_posts as $row) {
                         //    echo $row->post_id;
                         //    echo '<br>';
                         //$all_post_ids[] = $row->post_id;
-                        $temp = \App\Models\Post::where('id', $row->post_id)->where('language_id', $current_language_id)->count();
-
-                       if($temp > 0){
-                          $count=1;
-                          break;
-                       }
+                        $temp = \App\Models\Post::where('id', $row->post_id)
+                            ->where('language_id', $current_language_id)
+                            ->count();
+                    
+                        if ($temp > 0) {
+                            $count = 1;
+                            break;
+                        }
                     }
- 
-                    if($count == 0){
+                    
+                    if ($count == 0) {
                         continue;
                     }
                     
@@ -120,8 +122,12 @@ $current_language_id = \App\Models\Language::where('short_name', $current_short_
     </div>
 
     <div class="widget">
-
-        @foreach ($global_live_channel_data as $item)
+        @php
+            $live_channel_data = \App\Models\LiveChannel::with('rLanguage')
+                ->where('language_id', $current_language_id)
+                ->get();
+        @endphp
+        @foreach ($live_channel_data as $item)
             @if ($loop->iteration == 4)
             @break
         @endif
@@ -160,9 +166,14 @@ $current_language_id = \App\Models\Language::where('short_name', $current_short_
         </ul>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                @php
+                    $recent_news_data = \App\Models\Post::with('rSubCategory')
+                        ->where('language_id', $current_language_id)
+                        ->orderBy('id', 'desc')
+                        ->get();
+                @endphp
 
-
-                @foreach ($global_recent_news_data as $item)
+                @foreach ($recent_news_data as $item)
                     @if ($loop->iteration > 5)
                     @break
                 @endif
@@ -198,8 +209,13 @@ $current_language_id = \App\Models\Language::where('short_name', $current_short_
 
         </div>
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-            @foreach ($global_popular_news_data as $item)
+            @php
+                $popular_news_data = \App\Models\Post::with('rSubCategory')
+                    ->where('language_id', $current_language_id)
+                    ->orderBy('visitors', 'desc')
+                    ->get();
+            @endphp
+            @foreach ($popular_news_data as $item)
                 @if ($loop->iteration > 5)
                 @break
             @endif
@@ -244,35 +260,41 @@ $current_language_id = \App\Models\Language::where('short_name', $current_short_
 </div>
 <div class="poll">
 <div class="question">
-    {!! $global_online_poll_data->question !!}
+
+    @php
+        $online_poll_data = \App\Models\OnlinePoll::orderBy('id', 'desc')
+            ->where('language_id', $current_language_id)
+            ->first();
+    @endphp
+    {!! $online_poll_data->question !!}
 </div>
 
 @php
-$total_vote = $global_online_poll_data->yes_vote + $global_online_poll_data->no_vote;
-if ($global_online_poll_data->yes_vote == 0) {
+$total_vote = $online_poll_data->yes_vote + $online_poll_data->no_vote;
+if ($online_poll_data->yes_vote == 0) {
     $total_yes_percentage = 0;
 } else {
-    $total_yes_percentage = ($global_online_poll_data->yes_vote * 100) / $total_vote;
+    $total_yes_percentage = ($online_poll_data->yes_vote * 100) / $total_vote;
     $total_yes_percentage = ceil($total_yes_percentage);
 }
 
-if ($global_online_poll_data->no_vote == 0) {
+if ($online_poll_data->no_vote == 0) {
     $total_no_percentage = 0;
 } else {
-    $total_no_percentage = ($global_online_poll_data->no_vote * 100) / $total_vote;
+    $total_no_percentage = ($online_poll_data->no_vote * 100) / $total_vote;
     $total_no_percentage = ceil($total_no_percentage);
 }
 
 @endphp
 
 
-@if (session()->get('current_poll_id') == $global_online_poll_data->id)
+@if (session()->get('current_poll_id') == $online_poll_data->id)
     <div class="poll-result">
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tr>
                     <td style="width:100px;">{{ YES }}
-                        ({{ $global_online_poll_data->yes_vote }})</td>
+                        ({{ $online_poll_data->yes_vote }})</td>
                     <td>
                         <div class="progress">
                             <div class="progress-bar bg-success" role="progressbar"
@@ -283,7 +305,7 @@ if ($global_online_poll_data->no_vote == 0) {
                     </td>
                 </tr>
                 <tr>
-                    <td>{{ NO }} ({{ $global_online_poll_data->no_vote }})</td>
+                    <td>{{ NO }} ({{ $online_poll_data->no_vote }})</td>
                     <td>
                         <div class="progress">
                             <div class="progress-bar bg-danger" role="progressbar"
@@ -300,11 +322,11 @@ if ($global_online_poll_data->no_vote == 0) {
     </div>
 @endif
 
-@if (session()->get('current_poll_id') != $global_online_poll_data->id)
+@if (session()->get('current_poll_id') != $online_poll_data->id)
     <div class="answer-option">
         <form action="{{ route('online_poll_submit') }}" method="post">
             @csrf
-            <input type="hidden" name="id" value="{{ $global_online_poll_data->id }}">
+            <input type="hidden" name="id" value="{{ $online_poll_data->id }}">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="vote" id="poll_id_1"
                     value="Yes">

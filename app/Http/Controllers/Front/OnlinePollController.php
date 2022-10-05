@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\OnlinePoll;
+use App\Models\Language;
 use App\Helper\Helpers;
 
 class OnlinePollController extends Controller
@@ -25,17 +26,25 @@ class OnlinePollController extends Controller
         }
 
         $poll_data->update();
- 
+
         session()->put('current_poll_id', $poll_data->id);
 
         return redirect()->back()->with('success', 'Your vote is Counted Successfully');
     }
 
     public function previous_poll()
-    { 
+    {
         Helpers::read_json();
-        
-        $online_poll_data = OnlinePoll::orderBy('id', 'desc')->get();
+
+       if(!session()->get('session_short_name')){
+            $current_short_name = Language::where('is_default', 'Yes')->first()->short_name;
+       }else{
+        $current_short_name = session()->get('session_short_name');
+       }
+  
+       $current_language_id = Language::where('short_name', $current_short_name)->first()->id;
+
+        $online_poll_data = OnlinePoll::where('language_id', $current_language_id)->orderBy('id', 'desc')->get();
         return view('Front.poll_previous', compact('online_poll_data'));
     }
 }

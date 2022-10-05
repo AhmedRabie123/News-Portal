@@ -11,7 +11,7 @@ class AdminVideoController extends Controller
     public function video_show()
     {
 
-        $Videos = Video::get();
+        $Videos = Video::with('rLanguage')->get();
         return view('Admin.video_show', compact('Videos'));
     }
 
@@ -32,6 +32,7 @@ class AdminVideoController extends Controller
 
         $video_data->video_id = $request->video_id;
         $video_data->caption = $request->caption;
+        $video_data->language_id = $request->language_id;
         $video_data->save();
 
         return redirect()->route('admin_video_show')->with('success', 'Video Saved Successfully.');
@@ -54,6 +55,7 @@ class AdminVideoController extends Controller
 
         $videos->video_id = $request->video_id;
         $videos->caption = $request->caption;
+        $videos->language_id = $request->language_id;
         $videos->update();
 
         return redirect()->route('admin_video_show')->with('success', 'video Updated Successfully.');
