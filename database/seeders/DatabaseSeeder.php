@@ -26,8 +26,6 @@ class DatabaseSeeder extends Seeder
         //     email => mostafa@gmail.com;
         //     password => 12345;
 
-        //     email => sara@gmail.com;
-        //     password => 12345;
         // }
     }
 }
