@@ -15,5 +15,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        // Super Admin = {
+        //     email => ahmed@gmail.com;
+        //     password => 1234;
+
+        // }
+
+        // Author = {
+        //     email => mostafa@gmail.com;
+        //     password => 12345;
+
+        //     email => sara@gmail.com;
+        //     password => 12345;
+        // }
     }
 }
