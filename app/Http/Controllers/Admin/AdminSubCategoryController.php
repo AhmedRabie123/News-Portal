@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\Post;
 
 class AdminSubCategoryController extends Controller
 {
@@ -78,7 +79,15 @@ class AdminSubCategoryController extends Controller
     public function sub_category_delete($id)
     {
         $sub_category_single = SubCategory::where('id', $id)->first();
-        $sub_category_single->delete();
+
+        $count = Post::where('sub_category_id', $id)->count();
+
+        if($count == 0){
+            $sub_category_single->delete();
+        }else{
+            return redirect()->back()->with('error', 'You Can  Not delete this SubCategory, because there is one or more Posts under this.');
+        }
+
 
         return redirect()->route('admin_sub_category_show')->with('success', 'SubCategory deleted successfully.');
 

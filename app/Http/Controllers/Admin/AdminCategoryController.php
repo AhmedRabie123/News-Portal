@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\SubCategory;
 
 class AdminCategoryController extends Controller
 {
@@ -74,8 +75,16 @@ class AdminCategoryController extends Controller
     public function category_delete($id)
     {
         $category_single = Category::where('id',$id)->first();
+        $count = SubCategory::where('category_id', $id)->count();
+
+
+        if($count == 0){
+            $category_single->delete();
+        }else{
+            return redirect()->back()->with('error', 'You Can  Not delete this category, because there is one or more SubCategory under this.');
+        }
+
         //$category_single->rSubCategory()->delete();
-        $category_single->delete();
 
         return redirect()->route('admin_category_show')->with('success', 'Category deleted successfully.');
 
